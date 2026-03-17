@@ -1,0 +1,11 @@
+# 啟動 pgvector 容器
+docker run --name lock_AI -e POSTGRES_USER=lock -e POSTGRES_PASSWORD=0000 -e POSTGRES_DB=lock_AI_data -p 5433:5432 -d pgvector/pgvector:pg17
+
+# 進入 psql CLI
+docker exec -it lock_AI psql -U lock -d lock_AI_data
+
+# 啟用擴充功能
+CREATE EXTENSION IF NOT EXISTS vector;
+
+# 查看已安裝的 extensions，確認 pgvector 是否有成功安裝
+\dx

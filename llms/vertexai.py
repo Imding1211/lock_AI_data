@@ -1,0 +1,46 @@
+"""Vertex AI (Gemini) LLM provider."""
+
+import json
+import os
+import sys
+from typing import Callable
+
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
+
+
+def get_vertexai_llm(model_name: str, **kwargs) -> Callable:
+    """Return a generate_json closure backed by Vertex AI Gemini.
+
+    Parameters
+    ----------
+    model_name : str
+        Model identifier, e.g. ``"gemini-2.5-flash"``.
+    **kwargs
+        Extra generation parameters (``temperature``, etc.).
+    """
+    load_dotenv()
+
+    project = os.getenv("VERTEX_PROJECT_ID")
+    location = os.getenv("VERTEX_LOCATION")
+    if not project or not location:
+        sys.exit("VERTEX_PROJECT_ID / VERTEX_LOCATION not found in environment")
+
+    client = genai.Client(vertexai=True, project=project, location=location)
+    temperature = kwargs.get("temperature", 0.3)
+
+    def generate_json(prompt: str, system_prompt: str, schema: dict) -> dict:
+        response = client.models.generate_content(
+            model=model_name,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                response_mime_type="application/json",
+                response_schema=schema,
+                temperature=temperature,
+            ),
+        )
+        return json.loads(response.text)
+
+    return generate_json

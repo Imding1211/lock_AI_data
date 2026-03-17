@@ -1,0 +1,29 @@
+# ── Environment & Secrets ─────────────────────────────────────────────
+.env
+
+# ── Python ────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# ── macOS ─────────────────────────────────────────────────────────────
+.DS_Store
+
+# ── IDE ───────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── Large binary / media files ────────────────────────────────────────
+storage/raw/video/*.MOV
+storage/raw/video/*.mp4
+storage/raw/youtube/*.mp4
+
+# ── Raw data (too large / sensitive for git) ──────────────────────────
+storage/raw/line_chat/
+
+# ── Keep .keep files inside ignored directories ──────────────────────
+!**/.keep
