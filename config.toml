@@ -22,6 +22,11 @@ llm_provider = "vertexai"
 llm_model = "gemini-2.5-flash"
 temperature = 0.1
 
+[pipelines.youtube_silver]
+llm_provider = "vertexai"
+llm_model = "gemini-2.5-flash"
+temperature = 0.3
+
 [databases.video]
 type = "pgvector"
 collection_name = "kb_video"

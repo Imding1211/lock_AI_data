@@ -24,7 +24,7 @@ graph TD
         B1["Line Chat<br/>.csv"]
         B2["Video<br/>.txt"]
         B3["Website<br/>.txt / .md"]
-        B4["YouTube<br/>.md"]
+        B4["YouTube<br/>.json"]
     end
 
     subgraph SILVER ["Silver Layer (結構化中台)"]
@@ -47,12 +47,12 @@ graph TD
     A1 -->|"去識別化 / 過濾"| B1
     A2 -->|"ASR 語音轉文字"| B2
     A3 -->|"網頁去噪 / 提取"| B3
-    A4 -->|"影片重點轉錄"| B4
+    A4 -->|"Vision 逐幀解析"| B4
 
     B1 -->|"主題聚合 / 結構化"| C1
     B2 -->|"語音糾錯 / 去冗言"| C2
     B3 -->|"段落重組 / 清洗"| C3
-    B4 -->|"步驟格式化"| C4
+    B4 -->|"時間戳轉連結 / 重寫"| C4
 
     C1 & C2 & C3 & C4 -->|"產出"| D
 
