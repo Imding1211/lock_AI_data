@@ -2,3 +2,48 @@
 llm_provider = "vertexai"
 llm_model = "gemini-2.5-flash"
 temperature = 0.3
+
+[pipelines.line_chat]
+llm_provider = "vertexai"
+llm_model = "gemini-2.5-flash"
+temperature = 0.3
+auto_reply_patterns = [
+    "電子鎖安裝前評估",
+    "鎖市位於哪裡？今天有營業嗎？如何聯絡？",
+]
+
+[databases.video]
+type = "pgvector"
+collection_name = "kb_video"
+source_dir = "video"
+connection_uri_env = "PG_VECTOR_URI"
+embedding_provider = "vertexai"
+embedding_model = "text-embedding-004"
+embedding_dimensions = 768
+
+[databases.line_chat]
+type = "pgvector"
+collection_name = "kb_line_chat"
+source_dir = "line_chat"
+connection_uri_env = "PG_VECTOR_URI"
+embedding_provider = "vertexai"
+embedding_model = "text-embedding-004"
+embedding_dimensions = 768
+
+[databases.website]
+type = "pgvector"
+collection_name = "kb_website"
+source_dir = "website"
+connection_uri_env = "PG_VECTOR_URI"
+embedding_provider = "vertexai"
+embedding_model = "text-embedding-004"
+embedding_dimensions = 768
+
+[databases.youtube]
+type = "pgvector"
+collection_name = "kb_youtube"
+source_dir = "youtube"
+connection_uri_env = "PG_VECTOR_URI"
+embedding_provider = "vertexai"
+embedding_model = "text-embedding-004"
+embedding_dimensions = 768

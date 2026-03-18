@@ -21,9 +21,10 @@ venv/
 storage/raw/video/*.MOV
 storage/raw/video/*.mp4
 storage/raw/youtube/*.mp4
+storage/raw/line_chat/*.csv
 
-# ── Raw data (too large / sensitive for git) ──────────────────────────
-storage/raw/line_chat/
+# ── Large binary / media files ────────────────────────────────────────
+storage/bronze/line_chat/*.csv
 
 # ── Keep .keep files inside ignored directories ──────────────────────
 !**/.keep

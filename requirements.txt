@@ -1,2 +1,8 @@
 google-genai>=1.0.0
 python-dotenv>=1.0.0
+langchain-core
+langchain-text-splitters
+langchain-postgres
+langchain-google-genai
+psycopg[binary]
+pandas

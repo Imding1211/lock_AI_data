@@ -1,0 +1,86 @@
+---
+config:
+  layout: dagre
+  theme: base
+  themeVariables:
+    primaryColor: '#4A90D9'
+    primaryTextColor: '#1a1a1a'
+    lineColor: '#5A6A7A'
+    edgeLabelBackground: '#ffffff'
+    tertiaryTextColor: '#1a1a1a'
+    fontSize: 14px
+---
+graph TD
+    subgraph RAW ["Raw Layer (原始層)"]
+        direction LR
+        A1["Line Chat<br/>.csv"]
+        A2["Video<br/>.mp4"]
+        A3["Website<br/>.html"]
+        A4["YouTube<br/>.mp4"]
+    end
+
+    subgraph BRONZE ["Bronze Layer (粗抽取層)"]
+        direction LR
+        B1["Line Chat<br/>.csv"]
+        B2["Video<br/>.txt"]
+        B3["Website<br/>.txt / .md"]
+        B4["YouTube<br/>.md"]
+    end
+
+    subgraph SILVER ["Silver Layer (結構化中台)"]
+        direction LR
+        C1("process_line.py")
+        C2("process_video.py")
+        C3("process_website.py")
+        C4("process_youtube.py")
+    end
+
+    D["標準化 Document JSON<br/>page_content + metadata"]
+
+    subgraph GOLD ["Gold Layer (向量檢索庫)"]
+        E("seed_pgvector.py")
+        F1[("kb_line_chat")]
+        F2[("kb_video")]
+        F3[("kb_website")]
+        F4[("kb_youtube")]
+    end
+    A1 -->|"去識別化 / 過濾"| B1
+    A2 -->|"ASR 語音轉文字"| B2
+    A3 -->|"網頁去噪 / 提取"| B3
+    A4 -->|"影片重點轉錄"| B4
+
+    B1 -->|"主題聚合 / 結構化"| C1
+    B2 -->|"語音糾錯 / 去冗言"| C2
+    B3 -->|"段落重組 / 清洗"| C3
+    B4 -->|"步驟格式化"| C4
+
+    C1 & C2 & C3 & C4 -->|"產出"| D
+
+    D -->|"Chunking 切塊"| E
+
+    E -->|"Upsert"| F1 & F2 & F3 & F4
+    subgraph AI ["AI Services (服務工廠)"]
+        direction TB
+        LLM_F["LLM Factory<br/><i>Gemini 2.5 Flash</i>"]
+        EMB_F["Embedding Factory<br/><i>text-embedding-004</i>"]
+    end
+
+    LLM_F -.-> C1 & C2 & C3 & C4
+    EMB_F -.-> E
+    style RAW fill:#E8F4FD,stroke:#7AB8E0,stroke-width:2px,color:#2C5F7C
+    style BRONZE fill:#FFF3E0,stroke:#FFB74D,stroke-width:2px,color:#7A5A2C
+    style SILVER fill:#E8F5E9,stroke:#81C784,stroke-width:2px,color:#2E6B32
+    style GOLD fill:#FFF8E1,stroke:#FFD54F,stroke-width:2px,color:#7A6A2C
+    style AI fill:#F3E5F5,stroke:#BA68C8,stroke-width:2px,color:#5A2D6A
+    style LLM_F fill:#CE93D8,stroke:#8E24AA,stroke-width:2px,color:#1a1a1a
+    style EMB_F fill:#CE93D8,stroke:#8E24AA,stroke-width:2px,color:#1a1a1a
+    style D fill:#90CAF9,stroke:#1565C0,stroke-width:3px,color:#0D3B66
+    style C1 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
+    style C2 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
+    style C3 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
+    style C4 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
+    style E fill:#FFE082,stroke:#F9A825,stroke-width:2px
+    style F1 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
+    style F2 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
+    style F3 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
+    style F4 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
