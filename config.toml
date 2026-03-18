@@ -12,6 +12,16 @@ auto_reply_patterns = [
     "鎖市位於哪裡？今天有營業嗎？如何聯絡？",
 ]
 
+[pipelines.youtube_fetch]
+playlists = [
+    "https://www.youtube.com/playlist?list=PLAuQE6MOYXNcIGS2l8UPykjMbLEPXCV0f",
+]
+
+[pipelines.youtube_vision]
+llm_provider = "vertexai"
+llm_model = "gemini-2.5-flash"
+temperature = 0.1
+
 [databases.video]
 type = "pgvector"
 collection_name = "kb_video"

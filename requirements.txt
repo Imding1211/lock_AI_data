@@ -6,3 +6,4 @@ langchain-postgres
 langchain-google-genai
 psycopg[binary]
 pandas
+yt-dlp
