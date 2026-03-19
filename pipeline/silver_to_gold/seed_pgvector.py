@@ -1,5 +1,5 @@
 """
-Silver → Gold：將 storage/silver/ 下的標準化 JSON 切塊後寫入 pgvector。
+Silver → Gold：將 storage/silver/ 下的標準化 JSON 直接寫入 pgvector。
 
 用法：
     # 單一資料源
@@ -23,7 +23,6 @@ import tomllib
 from dotenv import load_dotenv
 from langchain_core.documents import Document
 from langchain_postgres import PGVector
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # 讓 import embeddings 能正確解析
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -67,13 +66,15 @@ def load_silver_files(source_dir: Path, file_arg: str | None) -> list[Path]:
     return files
 
 
-def json_to_document(path: Path) -> Document:
+def json_to_documents(path: Path) -> list[Document]:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    return Document(
-        page_content=data["page_content"],
-        metadata=data["metadata"],
-    )
+    if isinstance(data, list):
+        return [
+            Document(page_content=item["page_content"], metadata=item["metadata"])
+            for item in data
+        ]
+    return [Document(page_content=data["page_content"], metadata=data["metadata"])]
 
 
 def seed_one_database(db_key: str, db_config: dict, connection_uri: str,
@@ -93,8 +94,8 @@ def seed_one_database(db_key: str, db_config: dict, connection_uri: str,
     documents = []
     for path in files:
         try:
-            doc = json_to_document(path)
-            documents.append(doc)
+            docs = json_to_documents(path)
+            documents.extend(docs)
             logger.debug(f"  載入: {path.name}")
         except Exception as e:
             logger.error(f"  載入失敗: {path} — {e}")
@@ -102,13 +103,6 @@ def seed_one_database(db_key: str, db_config: dict, connection_uri: str,
     if not documents:
         logger.warning(f"[{db_key}] 沒有成功載入任何文件，跳過")
         return
-
-    # 切塊
-    chunk_size = db_config.get("chunk_size", 600)
-    chunk_overlap = db_config.get("chunk_overlap", 60)
-    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    chunks = splitter.split_documents(documents)
-    logger.info(f"共載入 {len(documents)} 份原始文件，切分為 {len(chunks)} 個 Chunk")
 
     # 寫入 pgvector
     logger.info(f"正在寫入 pgvector collection: {collection_name} (reset={reset})")
@@ -118,8 +112,8 @@ def seed_one_database(db_key: str, db_config: dict, connection_uri: str,
         connection=connection_uri,
         pre_delete_collection=reset,
     )
-    vector_store.add_documents(chunks)
-    logger.info(f"[完成] 成功寫入 {len(chunks)} 個 Chunk 至 {collection_name}")
+    vector_store.add_documents(documents)
+    logger.info(f"[完成] 成功寫入 {len(documents)} 份 Documents 至 {collection_name}")
 
 
 def main():

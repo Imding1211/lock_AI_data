@@ -1,10 +1,38 @@
-{
-  "page_content": "Dormakaba 電子鎖常見使用者誤觸雙重認證模式。\n\n### 什麼是雙重認證模式？\n雙重認證模式要求使用者輸入兩種解鎖方式才能開啟門鎖，例如密碼加卡片或密碼加指紋。意即需兩種解鎖方式才能開啟門鎖。\n\n### 如何確認是否啟用雙重認證？\n若您發現原本單一解鎖方式（如指紋、密碼或感應卡片）無法開啟門鎖，請嘗試以下組合：\n1. 輸入密碼後，按下「井字鍵」。\n2. 立即感應卡片或指紋。\n若門鎖能成功解鎖，則表示雙重認證功能已啟用。\n\n### 如何取消雙重認證？\n請依照以下步驟操作：\n1.  **開啟門鎖：** 確保門處於開啟狀態。\n2.  **模擬上鎖：** 在門開啟的情況下，使電子鎖的鎖舌伸出，模擬上鎖狀態。這通常是透過按下室內機上的「Close」鍵來實現。\n3.  **進入設定模式：** 觸摸螢幕，輸入管理者密碼。\n4.  **取消雙重認證：** 輸入管理者密碼後，按下「井字鍵」一次，接著按下數字「8」。\n5.  **測試：** 在門開啟狀態下，測試單一解鎖方式是否能正常開啟門鎖。",
-  "metadata": {
-    "brand": "Dormakaba",
-    "model": "general",
-    "category": "troubleshoot",
-    "source_type": "video",
-    "source": "Dormakaba 雙重認證排除.txt"
+[
+  {
+    "page_content": "【常見問題】\nDormakaba 電子鎖的雙重認證模式是什麼？\n為什麼我的 Dormakaba 鎖會突然需要兩種方式才能開門？\n雙重認證模式是如何運作的？\n\n【知識內容】\nDormakaba 電子鎖的雙重認證模式要求使用者同時使用兩種解鎖方式（例如密碼加卡片或密碼加指紋）才能開啟門鎖，此為常見使用者誤觸的問題。",
+    "metadata": {
+      "brand": "Dormakaba",
+      "model": "general",
+      "category": "troubleshoot",
+      "source_type": "video",
+      "source": "Dormakaba 雙重認證排除.txt",
+      "chunk_index": 1,
+      "raw_text": "Dormakaba 電子鎖的雙重認證模式要求使用者同時使用兩種解鎖方式（例如密碼加卡片或密碼加指紋）才能開啟門鎖，此為常見使用者誤觸的問題。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n如何判斷 Dormakaba 電子鎖是否啟用了雙重認證模式？\n我的 Dormakaba 鎖打不開，怎麼確認是不是雙重認證的問題？\nDormakaba 雙重認證模式開啟時，要如何測試解鎖？\n\n【知識內容】\n若 Dormakaba 電子鎖無法以單一指紋、密碼或感應卡片解鎖，可嘗試輸入密碼後按下米字鍵並立即感應卡片。若此組合能成功解鎖，則表示雙重認證模式已啟用。",
+    "metadata": {
+      "brand": "Dormakaba",
+      "model": "general",
+      "category": "troubleshoot",
+      "source_type": "video",
+      "source": "Dormakaba 雙重認證排除.txt",
+      "chunk_index": 2,
+      "raw_text": "若 Dormakaba 電子鎖無法以單一指紋、密碼或感應卡片解鎖，可嘗試輸入密碼後按下米字鍵並立即感應卡片。若此組合能成功解鎖，則表示雙重認證模式已啟用。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nDormakaba 電子鎖的雙重認證模式如何取消？\n取消雙重認證模式的具體操作步驟是什麼？\n在取消 Dormakaba 雙重認證模式時，門為什麼要保持開啟狀態？\n\n【知識內容】\n取消 Dormakaba 電子鎖雙重認證模式的步驟為：在門開啟且鎖舌伸出的狀態下（可透過按下室內機的「Close」鍵實現），觸摸螢幕，輸入管理者密碼，按下米字鍵一次，隨後按下數字「8」。操作完成後，請在門開啟狀態下測試功能。",
+    "metadata": {
+      "brand": "Dormakaba",
+      "model": "general",
+      "category": "troubleshoot",
+      "source_type": "video",
+      "source": "Dormakaba 雙重認證排除.txt",
+      "chunk_index": 3,
+      "raw_text": "取消 Dormakaba 電子鎖雙重認證模式的步驟為：在門開啟且鎖舌伸出的狀態下（可透過按下室內機的「Close」鍵實現），觸摸螢幕，輸入管理者密碼，按下米字鍵一次，隨後按下數字「8」。操作完成後，請在門開啟狀態下測試功能。"
+    }
   }
-}
+]

@@ -60,6 +60,11 @@
 *   **結構化輸出保證**：呼叫 LLM 時，必須透過 API 設定 (`response_mime_type="application/json"` 或 `response_format`) 強制 LLM 回傳純 JSON，防止 Markdown 解析錯誤。
 *   **Metadata 強制覆寫**：客觀事實的中繼資料（如 `source` 檔名, `source_type` 來源類別）應透過 Python 腳本強制覆寫，不依賴 LLM 推斷，以確保資料血緣的絕對正確。
 
+### 3.4 RAG 進階架構：HyDE 與 Small-to-Big Retrieval
+*   **語義前置切塊 (Semantic Pre-chunking)**：在 Bronze to Silver 階段，強制 LLM 產出陣列格式 (JSON Array)，將長文切分為多個自帶主語的獨立知識點。
+*   **HyDE (Hypothetical Document Embeddings)**：在 `page_content` 中，除了知識摘要外，必須由 LLM 生成 2-3 句「使用者可能會問的白話文疑問句」，以極大化向量檢索的命中率。
+*   **由小檢索大 (Small-to-Big)**：將 LLM 產出的高純度「結構化摘要」存入 `metadata["raw_text"]`。檢索命中 `page_content` 後，Agent 應讀取 `raw_text` 進行最終回答，徹底解決 Chunking 導致的上下文斷裂問題。
+
 ## 4. 關鍵指令與營運 (Usage & Operations)
 
 ### 4.1 資料庫啟動

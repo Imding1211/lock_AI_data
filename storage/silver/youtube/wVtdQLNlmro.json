@@ -1,11 +1,223 @@
-{
-  "page_content": "Chatlock AI-99 智慧門鎖：家庭成員邀請與設定指南\n\n本指南將逐步引導您完成 Chatlock AI-99 智慧門鎖應用程式中，邀請並設定家庭成員的完整流程。請依照以下步驟操作，確保您的家庭成員能順利使用智慧門鎖。\n\nI. 邀請人操作步驟 (主帳戶)\n\n1. 進入家庭管理介面\n    *   [00:00] 開啟 Chatlock 應用程式。在主畫面左上角，點擊「房子」圖示。\n    *   [00:01] 進入「我的家」頁面後，選擇「家庭管理」。\n    *   [00:02] 在「家庭管理」頁面中，選擇您要新增成員的家庭，例如「Chatlock.JP」。\n\n2. 新增家庭成員\n    *   [00:04] 進入「家庭設置」頁面後，點擊「添加成員」按鈕。\n    *   [00:05] 系統將彈出「選擇邀請方式」選單，您可以選擇透過各種通訊軟體分享邀請連結，或直接進行手動添加。\n    *   [00:06] 進入「添加成員」頁面，請依序填寫以下資訊：\n        *   **名稱：** 輸入家庭成員的名稱（例如：Chatlock）。\n        *   **國家/地區：** 點擊選擇成員所在的國家/地區（例如：台灣地區）。\n        *   **帳號：** 輸入被邀請人的應用程式註冊帳號（通常為電子郵件或手機號碼）。\n        *   **家庭角色：** 點擊選擇成員的角色權限。\n    *   [00:10] 角色設定選項包含：「管理員」（可管理設備、房間及其他成員）和「普通成員」（僅能使用設備及智能功能）。\n    *   [00:11] 選擇所需角色（例如：管理員），然後點擊右上角的「保存」按鈕以完成邀請。\n    *   [00:12] 成功添加後，新成員將會顯示在「家庭設置」頁面的「家庭成員」列表中。\n\nII. 被邀請人操作步驟 (新成員)\n\n1. 接受家庭邀請\n    *   [00:12] 被邀請人開啟 Chatlock 應用程式。在主畫面左上角，點擊「指紋」圖示（或暱稱設定區塊）。\n    *   [00:13] 進入「我的家」頁面後，選擇「家庭管理」。\n    *   [00:15] 在「家庭管理」頁面中，您將看到一個標示為「待加入」的家庭邀請，例如「Chatlock.JP 待加入」。點擊此邀請。\n    *   [00:16] 系統將彈出「邀請確認」提示框，詢問您是否加入家庭。點擊「接受邀請」。\n\n2. 切換至新加入的家庭\n    *   [00:18] 成功接受邀請後，您將回到「家庭管理」頁面，「Chatlock.JP」將顯示為已加入的家庭。點擊左上角的返回箭頭。\n    *   [00:21] 回到「我的家」頁面後，再次點擊左上角的「房子」圖示。\n    *   [00:23] 系統將彈出家庭選擇列表，選擇您剛加入的家庭「Chatlock.JP」。\n    *   [00:25] 成功切換後，您將進入「Chatlock.JP」家庭的主介面，並可看到智慧門鎖（例如：chatlock AI99）的狀態與操作選項，如「長按開鎖」、「消息/記錄」、「臨時密碼」等，表示您已成功加入並可控制智慧門鎖。",
-  "metadata": {
-    "brand": "Chatlock",
-    "model": "AI-99",
-    "category": "Smart Lock",
-    "source_type": "youtube",
-    "source": "wVtdQLNlmro",
-    "url": "https://www.youtube.com/watch?v=wVtdQLNlmro"
+[
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 要怎麼開始邀請家人？\n在 Chatlock AI-99 App 裡，要從哪裡進去設定家庭成員？\nChatlock AI-99 App 的主畫面長怎樣？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者若欲進行家庭成員管理，應首先於應用程式主畫面左上角點擊「房子」圖示，以進入相關設定介面。此主畫面通常顯示天氣資訊、設備狀態（如「chatlock AI99」顯示「在線」）及底部導航欄（包含「我的家」、「情景」、「自動化」、「我的」等選項）。[00:00]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 1,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者若欲進行家庭成員管理，應首先於應用程式主畫面左上角點擊「房子」圖示，以進入相關設定介面。此主畫面通常顯示天氣資訊、設備狀態（如「chatlock AI99」顯示「在線」）及底部導航欄（包含「我的家」、「情景」、「自動化」、「我的」等選項）。[00:00]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 裡，「我的家」頁面要選哪個選項才能管理家庭？\n怎麼找到 Chatlock AI-99 的家庭管理功能？\n在 Chatlock AI-99 App 裡，家庭管理在哪裡？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者在點擊主畫面左上角「房子」圖示後，將進入「我的家」頁面。此頁面提供多個選項，包含「點此設置暱稱」、「家庭管理」、「消息中心」及「常見問題和反饋」。使用者應選擇「家庭管理」選項以繼續家庭成員設定流程。[00:01]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 2,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者在點擊主畫面左上角「房子」圖示後，將進入「我的家」頁面。此頁面提供多個選項，包含「點此設置暱稱」、「家庭管理」、「消息中心」及「常見問題和反饋」。使用者應選擇「家庭管理」選項以繼續家庭成員設定流程。[00:01]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 裡，我要怎麼選定要加成員的家庭？\n如果我有好幾個家庭，Chatlock AI-99 要怎麼選？\n在 Chatlock AI-99 的家庭管理頁面，下一步要做什麼？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者進入「家庭管理」頁面後，將會看到已建立的家庭列表（例如「Chatlock」、「Chatlock.JP」），以及「創建家庭」和「加入一個家庭」的選項。使用者需選擇欲新增成員的特定家庭名稱（例如「Chatlock.JP」）。[00:02]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 3,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者進入「家庭管理」頁面後，將會看到已建立的家庭列表（例如「Chatlock」、「Chatlock.JP」），以及「創建家庭」和「加入一個家庭」的選項。使用者需選擇欲新增成員的特定家庭名稱（例如「Chatlock.JP」）。[00:02]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 裡，怎麼把新成員加到家庭？\n在 Chatlock AI-99 的家庭設定頁面，要按哪個按鈕才能邀請人？\nChatlock AI-99 怎麼新增家庭成員？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者選擇特定家庭後，將進入「家庭設置」頁面。此頁面顯示家庭名稱、房間管理、城市位置、權限管理及現有家庭成員列表。使用者應點擊頁面下方的「添加成員」按鈕，以開始邀請新成員。[00:04]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 4,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者選擇特定家庭後，將進入「家庭設置」頁面。此頁面顯示家庭名稱、房間管理、城市位置、權限管理及現有家庭成員列表。使用者應點擊頁面下方的「添加成員」按鈕，以開始邀請新成員。[00:04]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 邀請家人可以用哪些方式？\nChatlock AI-99 怎麼把邀請連結傳給別人？\nChatlock AI-99 有哪些分享邀請的選項？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者點擊「添加成員」後，系統將彈出「選擇邀請方式」分享選單，提供多種通訊應用程式（如 AirDrop、訊息、郵件、微信、LINE 等）供使用者選擇發送邀請。雖然影片中未選擇具體方式，但此步驟為發送邀請的準備。[00:05]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 5,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者點擊「添加成員」後，系統將彈出「選擇邀請方式」分享選單，提供多種通訊應用程式（如 AirDrop、訊息、郵件、微信、LINE 等）供使用者選擇發送邀請。雖然影片中未選擇具體方式，但此步驟為發送邀請的準備。[00:05]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 邀請新成員要填哪些資料？\n在 Chatlock AI-99 App 裡，怎麼輸入被邀請人的資訊？\nChatlock AI-99 邀請家人時，需要提供什麼帳號？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者在「添加成員」頁面中，需依序填寫新成員的相關資訊。這包含輸入成員的「名稱」、選擇正確的「國家/地區」、輸入被邀請人的應用程式「帳號」（通常為電子郵件或手機號碼），以及設定其「家庭角色」（預設為「普通成員」）。[00:06]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 6,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者在「添加成員」頁面中，需依序填寫新成員的相關資訊。這包含輸入成員的「名稱」、選擇正確的「國家/地區」、輸入被邀請人的應用程式「帳號」（通常為電子郵件或手機號碼），以及設定其「家庭角色」（預設為「普通成員」）。[00:06]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 邀請家人時，國家地區要怎麼選？\nChatlock AI-99 App 邀請成員的帳號是填什麼？\nChatlock AI-99 怎麼輸入被邀請人的名字和國家？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者在填寫成員資訊時，應在「名稱」欄位輸入成員名稱（例如「Chatlock」），點擊「國家/地區」選擇正確的地區（例如「台灣地區」），並在「帳號」欄位輸入被邀請人的電子郵件地址或其他指定帳號。[00:08]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 7,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者在填寫成員資訊時，應在「名稱」欄位輸入成員名稱（例如「Chatlock」），點擊「國家/地區」選擇正確的地區（例如「台灣地區」），並在「帳號」欄位輸入被邀請人的電子郵件地址或其他指定帳號。[00:08]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 裡，家庭成員有分哪幾種角色？\nChatlock AI-99 的「管理員」和「普通成員」有什麼差別？\nChatlock AI-99 怎麼設定新成員的權限？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者在「添加成員」頁面中，可點擊「家庭角色」選項以設定被邀請人的權限。系統會彈出「角色設定」選單，提供「管理員」（具備管理設備、房間及成員的權限）和「普通成員」（僅能使用設備及智能功能）兩種角色供選擇。預設通常為「普通成員」。[00:10]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 8,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者在「添加成員」頁面中，可點擊「家庭角色」選項以設定被邀請人的權限。系統會彈出「角色設定」選單，提供「管理員」（具備管理設備、房間及成員的權限）和「普通成員」（僅能使用設備及智能功能）兩種角色供選擇。預設通常為「普通成員」。[00:10]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 怎麼把新成員設成管理員？\nChatlock AI-99 設定好成員資料後，要怎麼儲存？\nChatlock AI-99 怎麼給家人管理員權限？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者若欲賦予新成員最高權限，應在「角色設定」選單中點擊「管理員」選項，將其家庭角色設定為「管理員」。完成所有成員資訊及角色設定後，使用者必須點擊頁面右上角的「保存」按鈕，以儲存本次添加成員的設定。[00:11]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 9,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者若欲賦予新成員最高權限，應在「角色設定」選單中點擊「管理員」選項，將其家庭角色設定為「管理員」。完成所有成員資訊及角色設定後，使用者必須點擊頁面右上角的「保存」按鈕，以儲存本次添加成員的設定。[00:11]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 收到邀請後，被邀請人要怎麼做？\nChatlock AI-99 被邀請人要從哪裡開始接受邀請？\nChatlock AI-99 App 裡，被邀請人一開始要點哪裡？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人收到邀請後，應開啟其應用程式。在應用程式主畫面，被邀請人需點擊左上角的「指紋圖示」（或類似的個人設定圖示），以進入個人或家庭管理介面，準備接受邀請。[00:12]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 10,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人收到邀請後，應開啟其應用程式。在應用程式主畫面，被邀請人需點擊左上角的「指紋圖示」（或類似的個人設定圖示），以進入個人或家庭管理介面，準備接受邀請。[00:12]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 被邀請人要怎麼進入家庭管理？\nChatlock AI-99 App 裡，被邀請人要在「我的家」頁面選哪個？\n被邀請人要怎麼找到 Chatlock AI-99 的家庭管理功能？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人點擊左上角圖示後，將進入「我的家」頁面。在此頁面中，被邀請人應選擇「家庭管理」選項，以查看待處理的家庭邀請。[00:13]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 11,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人點擊左上角圖示後，將進入「我的家」頁面。在此頁面中，被邀請人應選擇「家庭管理」選項，以查看待處理的家庭邀請。[00:13]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 裡，被邀請人怎麼看到待加入的家庭？\n被邀請人要怎麼接受 Chatlock AI-99 的家庭邀請？\nChatlock AI-99 App 裡，待加入的家庭在哪裡？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人進入「家庭管理」頁面後，將會看到一個標示為「待加入」的家庭邀請（例如「Chatlock.JP 待加入」）。被邀請人應點擊此待加入的家庭名稱，以進一步處理邀請。[00:15]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 12,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人進入「家庭管理」頁面後，將會看到一個標示為「待加入」的家庭邀請（例如「Chatlock.JP 待加入」）。被邀請人應點擊此待加入的家庭名稱，以進一步處理邀請。[00:15]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 怎麼確認加入家庭？\n被邀請人要按哪個按鈕才能加入 Chatlock AI-99 家庭？\nChatlock AI-99 的邀請確認訊息會顯示什麼？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人點擊待加入的家庭後，系統將彈出「邀請確認」提示框，顯示邀請詳情並詢問是否加入。被邀請人應點擊「接受邀請」按鈕，以確認加入該家庭。[00:16]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 13,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人點擊待加入的家庭後，系統將彈出「邀請確認」提示框，顯示邀請詳情並詢問是否加入。被邀請人應點擊「接受邀請」按鈕，以確認加入該家庭。[00:16]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 怎麼知道自己有沒有成功加入家庭？\n被邀請人加入 Chatlock AI-99 家庭後，下一步要做什麼？\nChatlock AI-99 App 裡，成功加入的家庭會長怎樣？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人接受邀請後，應用程式將返回「家庭管理」頁面，此時原先標示「待加入」的家庭（例如「Chatlock.JP」）將顯示為已加入狀態。被邀請人可點擊左上角的返回箭頭，回到上一頁。[00:18]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 14,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人接受邀請後，應用程式將返回「家庭管理」頁面，此時原先標示「待加入」的家庭（例如「Chatlock.JP」）將顯示為已加入狀態。被邀請人可點擊左上角的返回箭頭，回到上一頁。[00:18]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 被邀請人加入家庭後，怎麼切換到新家庭？\n被邀請人怎麼確認自己已經在 Chatlock AI-99 的新家庭裡？\nChatlock AI-99 App 裡，怎麼從「我的家」頁面選到剛加入的家庭？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人返回「我的家」頁面後，會看到左上角的房子圖示下方顯示已加入的家庭名稱（例如「Chatlock.JP」）。被邀請人應再次點擊左上角的房子圖示，以切換或確認當前操作的家庭。[00:21]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 15,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人返回「我的家」頁面後，會看到左上角的房子圖示下方顯示已加入的家庭名稱（例如「Chatlock.JP」）。被邀請人應再次點擊左上角的房子圖示，以切換或確認當前操作的家庭。[00:21]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 怎麼從家庭列表選到剛加入的家庭？\n被邀請人要怎麼進入 Chatlock AI-99 新家庭的控制介面？\nChatlock AI-99 App 裡，家庭選擇列表會顯示什麼？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人點擊左上角房子圖示後，將彈出家庭選擇列表，其中包含所有已加入的家庭（例如「我的家...」和「Chatlock.JP」）。被邀請人需明確點擊欲操作的家庭名稱（例如「Chatlock.JP」），以進入該家庭的控制介面。[00:23]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 16,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人點擊左上角房子圖示後，將彈出家庭選擇列表，其中包含所有已加入的家庭（例如「我的家...」和「Chatlock.JP」）。被邀請人需明確點擊欲操作的家庭名稱（例如「Chatlock.JP」），以進入該家庭的控制介面。[00:23]"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 App 成功加入家庭後，會看到什麼畫面？\n被邀請人怎麼知道自己已經可以控制 Chatlock AI-99 智慧門鎖了？\nChatlock AI-99 App 的主介面有哪些功能？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式被邀請人成功選擇家庭後，將進入該家庭的主介面，頂部顯示「chatlock AI99」。此介面中央會顯示綠色鎖圖示及「長按開鎖」提示，並顯示設備電池電量（例如「70%」）及功能列表（包含「消息/記錄」、「情景監控」、「成員管理」、「臨時密碼」、「智能聯動」等）。這表示被邀請人已成功加入家庭並獲得智慧門鎖的控制權限。[00:25]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 17,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式被邀請人成功選擇家庭後，將進入該家庭的主介面，頂部顯示「chatlock AI99」。此介面中央會顯示綠色鎖圖示及「長按開鎖」提示，並顯示設備電池電量（例如「70%」）及功能列表（包含「消息/記錄」、「情景監控」、「成員管理」、「臨時密碼」、「智能聯動」等）。這表示被邀請人已成功加入家庭並獲得智慧門鎖的控制權限。[00:25]"
+    }
   }
-}
+]

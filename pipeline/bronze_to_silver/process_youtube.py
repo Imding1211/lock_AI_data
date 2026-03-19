@@ -24,30 +24,54 @@ BRONZE_DIR = ROOT_DIR / "storage" / "bronze" / "youtube"
 SILVER_DIR = ROOT_DIR / "storage" / "silver" / "youtube"
 
 SYSTEM_PROMPT = """\
-你是一位資深電子鎖技術編輯。請閱讀以下 YouTube 影片的逐字教學稿（包含 [MM:SS] 時間戳記）。
-請保留所有時間戳記（如 [00:00]、[01:15]）原封不動，
-將文字整理得更為通順、專業，使其成為一篇完美的「操作設定指南」。
-同時請根據內容推斷 brand, model, category。
+你是一位資深電子鎖技術編輯。你會收到一段 YouTube 影片的逐字教學稿（包含 [MM:SS] 時間戳記）。
+
+請執行以下任務：
+
+## 1. 語意切分與重寫
+將逐字稿切分為多個獨立的知識點，每個知識點必須：
+- 自帶完整主語（例如：「AI-99 電子鎖設定管理員密碼時，應...」，不能只寫「設定時應...」）
+- 保留原始 [MM:SS] 時間戳記，標註該知識點對應的影片時間區間
+- 包含該知識點的完整描述，保留所有技術細節
+- 使用正式書面中文
+
+## 2. 模擬疑問句
+為每個知識點生成 2~3 句使用者可能會問的白話文問題。
+例如：「AI-99 怎麼設定管理員密碼？」、「如何新增指紋到 AI-99？」
+
+## 3. Metadata 推斷
+根據影片標題和內容推斷以下欄位：
+- brand：品牌名稱（Dormakaba / Chainlock / general）
+- model：型號（如 AI99、A90，無法確定則填 general）
+- category：分類，從以下選擇一個：setup / troubleshoot / knowledge / specification
 """
 
 RESPONSE_SCHEMA = {
-    "type": "object",
-    "properties": {
-        "page_content": {
-            "type": "string",
-            "description": "整理後的知識文章，保留 [MM:SS] 時間戳記但不含任何連結",
-        },
-        "metadata": {
-            "type": "object",
-            "properties": {
-                "brand": {"type": "string"},
-                "model": {"type": "string"},
-                "category": {"type": "string"},
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "summary": {
+                "type": "string",
+                "description": "結構化重寫後的獨立知識摘要（必須包含時間戳記與明確主語）",
             },
-            "required": ["brand", "model", "category"],
+            "questions": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "2~3 句使用者可能會問的白話文疑問句",
+            },
+            "metadata": {
+                "type": "object",
+                "properties": {
+                    "brand": {"type": "string"},
+                    "model": {"type": "string"},
+                    "category": {"type": "string"},
+                },
+                "required": ["brand", "model", "category"],
+            },
         },
+        "required": ["summary", "questions", "metadata"],
     },
-    "required": ["page_content", "metadata"],
 }
 
 log = logging.getLogger(__name__)
@@ -63,7 +87,7 @@ def load_pipeline_config() -> dict:
     return config["pipelines"]["youtube_silver"]
 
 
-def process_one_file(llm_func: Callable, bronze_data: dict) -> dict:
+def process_one_file(llm_func: Callable, bronze_data: dict) -> list[dict]:
     """Process a single bronze YouTube JSON through LLM rewriting."""
     video_id = bronze_data["video_id"]
     url = bronze_data["url"]
@@ -72,23 +96,35 @@ def process_one_file(llm_func: Callable, bronze_data: dict) -> dict:
 
     user_prompt = f"影片標題：{title}\n\n逐字稿內容：\n{transcript}"
 
-    result = llm_func(user_prompt, SYSTEM_PROMPT, RESPONSE_SCHEMA)
+    chunks = llm_func(user_prompt, SYSTEM_PROMPT, RESPONSE_SCHEMA)
 
-    # Validate required fields
-    if "page_content" not in result or not result["page_content"]:
-        raise ValueError("Missing or empty page_content in response")
-    if "metadata" not in result:
-        raise ValueError("Missing metadata in response")
-    for field in ("brand", "model", "category"):
-        if field not in result["metadata"]:
-            raise ValueError(f"Missing metadata.{field} in response")
+    if not isinstance(chunks, list) or len(chunks) == 0:
+        raise ValueError("LLM response is not a non-empty array")
 
-    # Force-overwrite source fields to ensure correctness
-    result["metadata"]["source_type"] = "youtube"
-    result["metadata"]["source"] = video_id
-    result["metadata"]["url"] = url
+    final_documents = []
+    for i, item in enumerate(chunks):
+        for field in ("summary", "questions", "metadata"):
+            if field not in item:
+                raise ValueError(f"Chunk {i}: missing '{field}'")
 
-    return result
+        # 組合 page_content（疑問句 + 摘要）
+        questions_str = "\n".join(item["questions"])
+        page_content = f"【常見問題】\n{questions_str}\n\n【知識內容】\n{item['summary']}"
+
+        # 建立 metadata
+        meta = item["metadata"]
+        meta["source_type"] = "youtube"
+        meta["source"] = video_id
+        meta["url"] = url
+        meta["chunk_index"] = i + 1
+        meta["raw_text"] = item["summary"]
+
+        final_documents.append({
+            "page_content": page_content,
+            "metadata": meta,
+        })
+
+    return final_documents
 
 
 # ── main ─────────────────────────────────────────────────────────────

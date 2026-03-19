@@ -1,10 +1,110 @@
-{
-  "page_content": "## 電子鎖構造解說\n\n一個鎖具安裝在門上，主要包含以下四個部分：\n\n### 1. 前部機（室外機）\n這是安裝在門外側的部分，通常包含密碼面板、指紋辨識器、卡片感應區等操作介面。\n\n### 2. 鎖夾\n鎖夾安裝在門的內部，是鎖具的核心機械結構。我們肉眼可見的部分是鎖夾的側板，其外觀為銀色的長條形金屬片。側板上包含：\n*   **鎖舌（或稱斜舌）**：用於門的日常開關。\n*   **感應器**：自動鎖夾通常會配備感應器，用於偵測門的狀態；若為半自動鎖夾，則不含此感應器。\n*   **鎖栓**：方形的鎖固部件，數量可能為兩根或三根，提供主要的防盜功能。\n*   **反鎖鎖栓**：部分鎖夾在鎖栓下方會設有反鎖鎖栓，提供額外的安全機制，但並非所有鎖夾都具備此功能，這取決於鎖具的設計。\n\n### 3. 後部機（室內機）\n這是安裝在門內側的部分，通常包含電池倉、室內開門把手、反鎖旋鈕等。\n\n### 4. 受口片\n受口片安裝在門框上，是一塊銀色鐵片。受口片上設有孔洞，用於容納鎖舌（或斜舌）的卡榫位置、鎖栓，以及可能的反鎖鎖栓。\n\n這些是構成一個基本鎖具的主要部件。",
-  "metadata": {
-    "brand": "general",
-    "model": "general",
-    "category": "knowledge",
-    "source_type": "video",
-    "source": "電子鎖構造解說.txt"
+[
+  {
+    "page_content": "【常見問題】\n電子鎖的室外機是什麼？\n前部機有哪些功能？\n室外機通常安裝在哪裡？\n\n【知識內容】\n電子鎖的前部機，亦稱室外機，是安裝於門外側的組件。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 1,
+      "raw_text": "電子鎖的前部機，亦稱室外機，是安裝於門外側的組件。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n電子鎖的室內機是什麼？\n後部機通常安裝在哪裡？\n室內機主要負責什麼？\n\n【知識內容】\n電子鎖的後部機，亦稱室內機，是安裝於門內側的組件。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 2,
+      "raw_text": "電子鎖的後部機，亦稱室內機，是安裝於門內側的組件。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n什麼是電子鎖的鎖夾？\n鎖夾在門的哪個位置？\n鎖夾的主要作用是什麼？\n\n【知識內容】\n電子鎖的鎖夾是安裝於門內部的重要組件，負責門的鎖定與解鎖機制。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 3,
+      "raw_text": "電子鎖的鎖夾是安裝於門內部的重要組件，負責門的鎖定與解鎖機制。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n鎖夾的側板是什麼？\n規格側板長什麼樣子？\n側板有什麼作用？\n\n【知識內容】\n電子鎖鎖夾的側板，又稱規格側板，是安裝於門側邊、肉眼可見的銀色長條部分。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 4,
+      "raw_text": "電子鎖鎖夾的側板，又稱規格側板，是安裝於門側邊、肉眼可見的銀色長條部分。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n鎖舌和斜舌有什麼不同？\n鎖舌和斜舌在電子鎖中扮演什麼角色？\n門鎖的鎖舌是做什麼用的？\n\n【知識內容】\n電子鎖鎖夾包含鎖舌與斜舌，這些組件用於門的閉合與開啟，並與門框上的受口片配合運作。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 5,
+      "raw_text": "電子鎖鎖夾包含鎖舌與斜舌，這些組件用於門的閉合與開啟，並與門框上的受口片配合運作。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n自動鎖感應器有什麼功能？\n我的電子鎖有自動上鎖功能，是因為有感應器嗎？\n半自動鎖夾為什麼沒有感應器？\n\n【知識內容】\n部分電子鎖的自動鎖夾會配備自動鎖感應器，用於偵測門的狀態以實現自動上鎖功能；半自動鎖夾則不具備此感應器。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 6,
+      "raw_text": "部分電子鎖的自動鎖夾會配備自動鎖感應器，用於偵測門的狀態以實現自動上鎖功能；半自動鎖夾則不具備此感應器。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n鎖栓在電子鎖裡是做什麼的？\n鎖栓的數量會影響安全性嗎？\n鎖栓長什麼樣子？\n\n【知識內容】\n電子鎖鎖夾中的鎖栓是方形的組件，通常有兩根或三根，用於加強門的鎖定安全性。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 7,
+      "raw_text": "電子鎖鎖夾中的鎖栓是方形的組件，通常有兩根或三根，用於加強門的鎖定安全性。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n什麼是按鎖鎖栓？\n我的電子鎖有按鎖鎖栓嗎？\n按鎖鎖栓的功能是什麼？\n\n【知識內容】\n部分電子鎖鎖夾的鎖栓下方會設有按鎖鎖栓，此為加強鎖定功能的組件，但並非所有設計皆有。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 8,
+      "raw_text": "部分電子鎖鎖夾的鎖栓下方會設有按鎖鎖栓，此為加強鎖定功能的組件，但並非所有設計皆有。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n受口片是什麼？\n受口片安裝在哪裡？\n受口片上的孔洞是用來做什麼的？\n\n【知識內容】\n電子鎖的受口片是安裝於門框上的銀色鐵片，其設計包含用於承接鎖舌、斜舌、卡榫、鎖栓，以及按鎖鎖栓的孔洞，確保門鎖組件能正確閉合與固定。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "電子鎖構造解說.txt",
+      "chunk_index": 9,
+      "raw_text": "電子鎖的受口片是安裝於門框上的銀色鐵片，其設計包含用於承接鎖舌、斜舌、卡榫、鎖栓，以及按鎖鎖栓的孔洞，確保門鎖組件能正確閉合與固定。"
+    }
   }
-}
+]
