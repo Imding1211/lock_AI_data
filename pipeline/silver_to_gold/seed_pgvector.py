@@ -104,7 +104,9 @@ def seed_one_database(db_key: str, db_config: dict, connection_uri: str,
         return
 
     # 切塊
-    splitter = RecursiveCharacterTextSplitter(chunk_size=600, chunk_overlap=60)
+    chunk_size = db_config.get("chunk_size", 600)
+    chunk_overlap = db_config.get("chunk_overlap", 60)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     chunks = splitter.split_documents(documents)
     logger.info(f"共載入 {len(documents)} 份原始文件，切分為 {len(chunks)} 個 Chunk")
 

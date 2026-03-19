@@ -35,6 +35,8 @@ connection_uri_env = "PG_VECTOR_URI"
 embedding_provider = "vertexai"
 embedding_model = "text-embedding-004"
 embedding_dimensions = 768
+chunk_size = 600
+chunk_overlap = 60
 
 [databases.line_chat]
 type = "pgvector"
@@ -44,6 +46,8 @@ connection_uri_env = "PG_VECTOR_URI"
 embedding_provider = "vertexai"
 embedding_model = "text-embedding-004"
 embedding_dimensions = 768
+chunk_size = 600
+chunk_overlap = 60
 
 [databases.website]
 type = "pgvector"
@@ -53,6 +57,8 @@ connection_uri_env = "PG_VECTOR_URI"
 embedding_provider = "vertexai"
 embedding_model = "text-embedding-004"
 embedding_dimensions = 768
+chunk_size = 600
+chunk_overlap = 60
 
 [databases.youtube]
 type = "pgvector"
@@ -62,3 +68,5 @@ connection_uri_env = "PG_VECTOR_URI"
 embedding_provider = "vertexai"
 embedding_model = "text-embedding-004"
 embedding_dimensions = 768
+chunk_size = 600
+chunk_overlap = 60
