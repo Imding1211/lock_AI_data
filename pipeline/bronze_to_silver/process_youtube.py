@@ -30,18 +30,18 @@ SYSTEM_PROMPT = """\
 
 ## 1. 語意切分與重寫
 將逐字稿切分為多個獨立的知識點，每個知識點必須：
-- 自帶完整主語（例如：「AI-99 電子鎖設定管理員密碼時，應...」，不能只寫「設定時應...」）
+- 自帶完整主語（例如：「Chatlock AI-99 電子鎖設定管理員密碼時，應...」，不能只寫「設定時應...」）
 - 保留原始 [MM:SS] 時間戳記，標註該知識點對應的影片時間區間
 - 包含該知識點的完整描述，保留所有技術細節
 - 使用正式書面中文
 
 ## 2. 模擬疑問句
 為每個知識點生成 2~3 句使用者可能會問的白話文問題。
-例如：「AI-99 怎麼設定管理員密碼？」、「如何新增指紋到 AI-99？」
+例如：「Chatlock AI-99 怎麼設定管理員密碼？」、「如何新增指紋到 Chatlock AI-99？」
 
 ## 3. Metadata 推斷
 根據影片標題和內容推斷以下欄位：
-- brand：品牌名稱（Dormakaba / Chainlock / general）
+- brand：品牌名稱（Dormakaba / Chatlock / general）
 - model：型號（如 AI99、A90，無法確定則填 general）
 - category：分類，從以下選擇一個：setup / troubleshoot / knowledge / specification
 """
