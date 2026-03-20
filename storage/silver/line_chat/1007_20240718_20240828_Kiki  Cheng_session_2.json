@@ -1,10 +1,26 @@
-{
-  "page_content": "【電子鎖故障判斷與到府檢測服務說明】\n當電子鎖出現異常狀況時，例如鎖體內部卡榫斷裂或螺絲鬆脫，通常需要專業人員進行現場檢測以判斷具體故障原因。若為內部卡榫等關鍵機械結構損壞，可能導致無法維修；而若是螺絲鬆動等較輕微問題，則可能透過重新鎖緊螺絲即可排除。為確保診斷的準確性與安全性，建議安排專業技術人員到府檢測。一般而言，此類到府檢測服務會收取檢測費用，例如新台幣500元。",
-  "metadata": {
-    "brand": "general",
-    "model": "general",
-    "category": "troubleshoot",
-    "source_type": "line_chat",
-    "source": "1007_20240718_20240828_Kiki  Cheng_session_2"
+[
+  {
+    "page_content": "【常見問題】\n電子鎖的卡榫壞掉可以修理嗎？\n如果電子鎖的螺絲鬆了，我自己可以處理嗎？\n電子鎖故障時，什麼情況下無法維修？\n\n【知識內容】\n當電子鎖的內部卡榫發生斷裂時，通常無法進行維修，可能需要更換鎖體。然而，若僅為螺絲鬆脫導致的鎖體問題，使用者可嘗試將螺絲重新鎖緊以解決。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "troubleshoot",
+      "source_type": "line_chat",
+      "source": "1007_20240718_20240828_Kiki  Cheng_session_2",
+      "chunk_index": 1,
+      "raw_text": "當電子鎖的內部卡榫發生斷裂時，通常無法進行維修，可能需要更換鎖體。然而，若僅為螺絲鬆脫導致的鎖體問題，使用者可嘗試將螺絲重新鎖緊以解決。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n電子鎖到府檢測要多少錢？\n如果需要技師到家裡檢查電子鎖，會收費嗎？\n\n【知識內容】\n提供電子鎖到府檢測服務時，將會收取新台幣500元的檢測費用。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "1007_20240718_20240828_Kiki  Cheng_session_2",
+      "chunk_index": 2,
+      "raw_text": "提供電子鎖到府檢測服務時，將會收取新台幣500元的檢測費用。"
+    }
   }
-}
+]

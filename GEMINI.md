@@ -94,5 +94,5 @@ docker run --name lock_AI -e POSTGRES_USER=lock -e POSTGRES_PASSWORD=0000 -e POS
 ## 5. 開發建議與慣例
 
 *   **中繼資料 (Metadata)**：為每份文件精確標註 `brand` (品牌) 與 `model` (型號)，這是 AI Agent 進行 Metadata Filtering 檢索的關鍵。
-*   **資料切分 (Chunking)**：目前全域採用 `RecursiveCharacterTextSplitter`，預設 `chunk_size=600`, `chunk_overlap=60`。
+*   **資料切分 (Chunking)**：全域已廢棄 `RecursiveCharacterTextSplitter`，改用 LLM 進行 **語義前置切塊 (Semantic Pre-chunking)**。
 *   **環境變數**：開發前請確保 `.env` 已正確配置 `PG_VECTOR_URI`、`VERTEX_PROJECT_ID` 及 `VERTEX_LOCATION`。

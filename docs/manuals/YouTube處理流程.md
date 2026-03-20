@@ -185,14 +185,11 @@ temperature = 0.1
 
 ---
 
-## 階段三：Bronze → Silver（時間戳轉連結 + LLM 重寫）
+## 階段三：Bronze → Silver（Semantic Pre-chunking + HyDE）
 
 ### 3.1 處理策略
 
-Bronze JSON 的 transcript 含有 `[MM:SS]` 時間戳但尚未結構化為知識文件。此階段執行兩項核心處理：
-
-1. **Regex 時間戳轉換**：將 `[MM:SS]` 轉為可點擊的 YouTube deep link
-2. **LLM 重寫**：將逐步操作紀錄整理為通順、專業的操作設定指南，並推斷 metadata
+Bronze JSON 的 transcript 含有 `[MM:SS]` 時間戳但尚未結構化為知識文件。此階段透過 LLM 執行 **Semantic Pre-chunking**（語意前置切塊），保留 `[MM:SS]` 原始時間戳格式，將整份 transcript 依語意邊界拆分為多個獨立知識點，每個知識點包含 **HyDE 格式**（`【常見問題】` + `【知識內容】`）的 `page_content` 與 `raw_text` 純淨摘要。
 
 **腳本**：`pipeline/bronze_to_silver/process_youtube.py`
 
@@ -221,11 +218,11 @@ config:
 ---
 graph TD
     A[Bronze JSON<br/>video_id + url + title + transcript] -->|讀取| B[取得 transcript 內容]
-    B -->|Regex 替換| C[時間戳轉 YouTube deep link<br/>MM:SS → youtu.be/id?t=Ts]
-    C -->|送入 LLM| D[重寫為操作設定指南<br/>保留所有時間戳超連結]
-    D --> E[推斷 Metadata<br/>brand / model / category]
+    B -->|送入 LLM| C[1. 語意切分<br/>Semantic Pre-chunking]
+    C --> D[2. 模擬疑問句<br/>HyDE 格式組裝<br/>保留 MM:SS 時間戳]
+    D --> E[3. Metadata 推斷<br/>brand / model / category]
     E --> F[強制覆寫 source 欄位<br/>source_type + source + url]
-    F --> G[輸出 Silver JSON<br/>每支影片一個檔案]
+    F --> G[輸出 Silver JSON Array<br/>每支影片一個檔案]
 
     style A fill:#FFF3E0,stroke:#FFB74D,stroke-width:2px
     style G fill:#E8F5E9,stroke:#66BB6A,stroke-width:3px
@@ -241,25 +238,13 @@ graph TD
 | 輸出路徑 | `storage/silver/youtube/{video_id}.json` |
 | 目前檔案數 | 3 支影片 |
 
-#### 時間戳轉換（Regex）
+#### Semantic Pre-chunking + HyDE
 
-使用正則表達式 `\[\d{1,2}:\d{2}(?::\d{2})?\]` 匹配 `[MM:SS]` 或 `[HH:MM:SS]` 格式的時間戳，轉為可點擊的 YouTube deep link：
-
-| 轉換前 | 轉換後 |
-|--------|--------|
-| `[00:00]` | `[[00:00]](https://youtu.be/Bg3hu2shcVo?t=0s)` |
-| `[01:15]` | `[[01:15]](https://youtu.be/Bg3hu2shcVo?t=75s)` |
-| `[1:30:00]` | `[[1:30:00]](https://youtu.be/Bg3hu2shcVo?t=5400s)` |
-
-時間戳秒數計算邏輯：
-- `MM:SS` → `M * 60 + S`
-- `HH:MM:SS` → `H * 3600 + M * 60 + S`
-
-#### LLM 重寫
-
-LLM 接收帶有 deep link 的 transcript，執行以下任務：
-- 將逐步操作紀錄整理為通順、專業的「操作設定指南」
-- **保留所有 Markdown 時間戳超連結**原封不動
+LLM 接收 transcript 內容，執行以下任務：
+- 依語意邊界將 transcript 拆分為多個獨立知識點
+- 為每個知識點產生 HyDE 格式的 `page_content`（`【常見問題】` + `【知識內容】`）
+- **保留 `[MM:SS]` 原始時間戳格式**於知識內容中
+- 產出 `raw_text` 純淨摘要（供 Agent 最終回答使用）
 - 根據內容推斷 `brand`、`model`、`category`
 
 LLM 回應使用 JSON Schema 約束（structured output），確保輸出格式一致。
@@ -295,39 +280,45 @@ temperature = 0.3
 
 ### 3.5 輸出規格
 
-產出的 Silver JSON 位於 `storage/silver/youtube/`，每支影片對應一個 JSON 檔案，檔名為 `{video_id}.json`。
+產出的 Silver JSON 位於 `storage/silver/youtube/`，每支影片對應一個 JSON 檔案，檔名為 `{video_id}.json`。格式為 **JSON Array**，每個元素為一個獨立知識點。
 
 ```json
-{
-  "page_content": "# AI-99 清理緩存設定指南\n\n[[00:00]](https://youtu.be/Bg3hu2shcVo?t=0s) ...",
-  "metadata": {
-    "brand": "Chainlock",
-    "model": "AI-99",
-    "category": "setup",
-    "source_type": "youtube",
-    "source": "Bg3hu2shcVo",
-    "url": "https://www.youtube.com/watch?v=Bg3hu2shcVo"
+[
+  {
+    "page_content": "【常見問題】\nChatlock AI-99 要怎麼開始邀請家人？\n在 Chatlock AI-99 App 裡，要從哪裡進去設定家庭成員？\n\n【知識內容】\nChatlock AI-99 智慧門鎖應用程式使用者若欲進行家庭成員管理，應首先於應用程式主畫面左上角點擊「房子」圖示，以進入相關設定介面。[00:00]",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "AI-99",
+      "category": "setup",
+      "source_type": "youtube",
+      "source": "wVtdQLNlmro",
+      "url": "https://www.youtube.com/watch?v=wVtdQLNlmro",
+      "chunk_index": 1,
+      "raw_text": "Chatlock AI-99 智慧門鎖應用程式使用者若欲進行家庭成員管理，應首先於應用程式主畫面左上角點擊「房子」圖示，以進入相關設定介面。[00:00]"
+    }
   }
-}
+]
 ```
 
 | 欄位 | 說明 | 範例 |
 |------|------|------|
-| `page_content` | LLM 重寫後的知識文章，保留所有時間戳 deep link | `# AI-99 清理緩存設定指南...` |
-| `metadata.brand` | LLM 推斷的品牌 | `Chainlock` |
+| `page_content` | HyDE 格式：`【常見問題】` + 模擬疑問句 + `【知識內容】` + 純淨摘要（含 `[MM:SS]`） | `【常見問題】\nChatlock AI-99 要怎麼開始邀請家人？...` |
+| `metadata.brand` | LLM 推斷的品牌 | `Chatlock` |
 | `metadata.model` | LLM 推斷的型號 | `AI-99` |
 | `metadata.category` | LLM 推斷的分類 | `setup` |
 | `metadata.source_type` | 固定為 `youtube`（腳本強制覆寫） | `youtube` |
-| `metadata.source` | YouTube video_id（腳本強制覆寫） | `Bg3hu2shcVo` |
-| `metadata.url` | 影片完整 URL（腳本強制覆寫） | `https://www.youtube.com/watch?v=Bg3hu2shcVo` |
+| `metadata.source` | YouTube video_id（腳本強制覆寫） | `wVtdQLNlmro` |
+| `metadata.url` | 影片完整 URL（腳本強制覆寫） | `https://www.youtube.com/watch?v=wVtdQLNlmro` |
+| `metadata.chunk_index` | 該知識點在原始文件中的序號 | `1` |
+| `metadata.raw_text` | 純淨知識摘要（供 Agent 回答使用，含 `[MM:SS]`） | `Chatlock AI-99 智慧門鎖應用程式...` |
 
 ---
 
-## 階段四：Silver → Gold（切塊與向量化寫入 pgvector）
+## 階段四：Silver → Gold（向量化寫入 pgvector）
 
 ### 4.1 處理策略
 
-Silver JSON 已是結構化知識文件，但單篇文章可能過長，不利於向量檢索的精確度。此階段將文件切塊（Chunking）後，透過 Embedding 模型轉為向量並寫入 pgvector。
+Silver JSON 已是 LLM 語意前置切塊後的 Document Array，每個元素為一個獨立知識點。此階段直接將 JSON Array 轉為 LangChain Documents，經 Embedding 向量化後寫入 pgvector。
 
 **腳本**：`pipeline/silver_to_gold/seed_pgvector.py`（通用腳本，所有資料源共用）
 
@@ -336,7 +327,7 @@ Silver JSON 已是結構化知識文件，但單篇文章可能過長，不利�
 python pipeline/silver_to_gold/seed_pgvector.py --database youtube --reset --verbose
 
 # 單檔驗證
-python pipeline/silver_to_gold/seed_pgvector.py --database youtube --file "Bg3hu2shcVo.json" --verbose
+python pipeline/silver_to_gold/seed_pgvector.py --database youtube --file "wVtdQLNlmro.json" --verbose
 
 # 全部資料源一次寫入
 python pipeline/silver_to_gold/seed_pgvector.py --all --reset --verbose
@@ -355,25 +346,19 @@ config:
     lineColor: '#5A6A7A'
 ---
 graph TD
-    A[Silver JSON 目錄<br/>每檔一份知識文件] -->|載入| B[轉為 LangChain Document]
-    B -->|RecursiveCharacterTextSplitter| C[切塊<br/>chunk_size=600, overlap=60]
-    C -->|Vertex AI text-embedding-004| D[向量化 (768 維)]
-    D --> E[寫入 pgvector<br/>collection: kb_youtube]
+    A[Silver JSON Array<br/>每個元素一個知識點] -->|載入| B[轉為 LangChain Documents]
+    B -->|Vertex AI text-embedding-004| C[向量化 (768 維)]
+    C --> D[寫入 pgvector<br/>collection: kb_youtube]
 
     style A fill:#E8F5E9,stroke:#66BB6A,stroke-width:2px
-    style E fill:#E1BEE7,stroke:#AB47BC,stroke-width:3px
+    style D fill:#E1BEE7,stroke:#AB47BC,stroke-width:3px
 ```
 
 ### 4.3 處理細節
 
 #### 文件載入
 - 讀取 `storage/silver/youtube/` 下所有 `.json` 檔案
-- 每個 JSON 轉為 `langchain_core.documents.Document`，`metadata` 原封不動保留
-
-#### 切塊 (Chunking)
-- 使用 `RecursiveCharacterTextSplitter`
-- `chunk_size=600`，`chunk_overlap=60`（10% overlap）
-- 切塊後每個 chunk 繼承原文件的 metadata
+- 每個 JSON 為 Array，展開為多個 `langchain_core.documents.Document`，`metadata` 原封不動保留
 
 #### 向量化與寫入
 - Embedding 模型：Vertex AI `text-embedding-004`（768 維）
@@ -396,7 +381,7 @@ embedding_dimensions = 768
 ### 4.5 驗證
 
 ```bash
-# 查看 collection chunk 數量
+# 查看 collection 文件數量
 docker exec -it lock_AI psql -U lock -d lock_AI_data \
   -c "SELECT c.name, count(e.id) FROM langchain_pg_collection c LEFT JOIN langchain_pg_embedding e ON c.uuid = e.collection_id GROUP BY c.name;"
 
@@ -413,5 +398,5 @@ docker exec -it lock_AI psql -U lock -d lock_AI_data \
 |------|------|------|---------|------|
 | Source → Raw | YouTube 播放清單 | `storage/raw/youtube/{video_id}.mp4` + `.json` | yt-dlp 下載 | `pipeline/source_to_raw/process_youtube.py` |
 | Raw → Bronze | `storage/raw/youtube/{video_id}.mp4` | `storage/bronze/youtube/{video_id}.json` | Gemini Vision 逐幀解析 | `pipeline/raw_to_bronze/process_youtube.py` |
-| Bronze → Silver | `storage/bronze/youtube/{video_id}.json` | `storage/silver/youtube/{video_id}.json` | Regex 時間戳轉連結 + LLM 重寫 | `pipeline/bronze_to_silver/process_youtube.py` |
-| Silver → Gold | `storage/silver/youtube/{video_id}.json` | pgvector `kb_youtube` | 切塊 + Embedding 寫入 | `pipeline/silver_to_gold/seed_pgvector.py` |
+| Bronze → Silver | `storage/bronze/youtube/{video_id}.json` | `storage/silver/youtube/{video_id}.json` | Semantic Pre-chunking + HyDE | `pipeline/bronze_to_silver/process_youtube.py` |
+| Silver → Gold | `storage/silver/youtube/{video_id}.json` | pgvector `kb_youtube` | 直接轉 Documents + Embedding 寫入 | `pipeline/silver_to_gold/seed_pgvector.py` |

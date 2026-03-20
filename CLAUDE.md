@@ -55,7 +55,7 @@ Documents destined for pgvector must use `langchain_core.documents.Document` wit
 - `category` (str) — e.g. `"setup"`, `"troubleshoot"`, `"warranty"`, `"specification"`
 - `source` (str) — original source filename
 
-Chunking: use `RecursiveCharacterTextSplitter` with chunk_size 500-800, overlap 10%.
+- Chunking: Use Semantic Pre-chunking by LLM (Array format). Do not use `RecursiveCharacterTextSplitter`.
 
 ## Key Specs
 

@@ -105,7 +105,7 @@ graph TD
 
 ### 2.1 處理策略
 
-Bronze CSV 中的 Session 仍是原始對話格式，無法直接用於 RAG 檢索。此階段透過 LLM 進行三項任務：**相關性過濾**、**知識重寫**、**Metadata 推斷**，將有價值的對話轉化為結構化知識文件。
+Bronze CSV 中的 Session 仍是原始對話格式，無法直接用於 RAG 檢索。此階段透過 LLM 進行 **相關性過濾** 與 **Semantic Pre-chunking**（語意前置切塊）。若對話被判定為相關，LLM 會將對話內容拆分為多個獨立知識點，每個知識點包含 **HyDE 格式**（`【常見問題】` + `【知識內容】`）的 `page_content` 與 `raw_text` 純淨摘要。具體任務包含：**相關性過濾**、**語意切分與 HyDE 格式組裝**、**Metadata 推斷**。
 
 **腳本**：`pipeline/bronze_to_silver/process_line.py`
 
@@ -134,15 +134,16 @@ graph TD
     B -->|送入 LLM| C{"1. 相關性過濾<br/>is_relevant?"}
 
     C -- false (非電子鎖相關) --> X[跳過 (不輸出)]
-    C -- true --> D[2. 知識重寫<br/>對話 → 敘述性知識文章]
+    C -- true --> D[2. 語意切分<br/>Semantic Pre-chunking]
 
-    D --> E[3. Metadata 推斷<br/>brand / model / category]
+    D --> E[3. 模擬疑問句<br/>HyDE 格式組裝]
+    E --> F[4. Metadata 推斷<br/>brand / model / category]
 
-    E --> F[組合為 LangChain Document JSON]
-    F --> G[輸出 Silver JSON<br/>每個 Session 一個檔案]
+    F --> G[組合為 JSON Array<br/>每個元素一個知識點]
+    G --> H[輸出 Silver JSON Array<br/>每個 Session 一個檔案]
 
     style A fill:#FFF3E0,stroke:#FFB74D,stroke-width:2px
-    style G fill:#E8F5E9,stroke:#66BB6A,stroke-width:3px
+    style H fill:#E8F5E9,stroke:#66BB6A,stroke-width:3px
     style C fill:#FFE082,stroke:#F9A825,stroke-width:2px
     style X fill:#FFCDD2,stroke:#E53935,stroke-width:1px,stroke-dasharray: 5 5
 ```
@@ -183,37 +184,43 @@ LLM provider 和 model 由 `config.toml` 的 `[pipelines.line_chat]` 區塊控�
 
 ### 2.5 輸出規格
 
-產出的 Silver JSON 位於 `storage/silver/line_chat/`，每個有效 Session 對應一個 JSON 檔案，檔名為 `{session_id}.json`。
+產出的 Silver JSON 位於 `storage/silver/line_chat/`，每個有效 Session 對應一個 JSON 檔案，檔名為 `{session_id}.json`。格式為 **JSON Array**（若 `is_relevant` 為 true），每個元素為一個獨立知識點。
 
 ```json
-{
-  "page_content": "【電子鎖安裝服務預約流程說明】\n電子鎖安裝服務需透過客服管道進行預約...",
-  "metadata": {
-    "brand": "general",
-    "model": "general",
-    "category": "setup",
-    "source_type": "line_chat",
-    "source": "1001_20240822_20240903_yen-cheng_session_6"
+[
+  {
+    "page_content": "【常見問題】\n安裝電子鎖前需要提供哪些照片？\n為什麼安裝電子鎖需要門和鎖的照片？\n電子鎖的安裝條件會受到哪些因素影響？\n\n【知識內容】\n電子鎖或輔助鎖的安裝作業，受限於門扇與現有鎖具的特定條件。為評估安裝可行性與潛在限制，客戶需提供清晰的門扇、現有鎖具正面以及開門後鎖舌側面的照片，供技術人員進行初步判斷。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "setup",
+      "source_type": "line_chat",
+      "source": "1036_20240704_20240810_專專_session_1",
+      "chunk_index": 1,
+      "raw_text": "電子鎖或輔助鎖的安裝作業，受限於門扇與現有鎖具的特定條件。為評估安裝可行性與潛在限制，客戶需提供清晰的門扇、現有鎖具正面以及開門後鎖舌側面的照片，供技術人員進行初步判斷。"
+    }
   }
-}
+]
 ```
 
 | 欄位 | 說明 | 範例 |
 |------|------|------|
-| `page_content` | `【標題】\n` + LLM 重寫後的知識文章 | `【電子鎖安裝服務預約流程說明】\n電子鎖安裝服務...` |
+| `page_content` | HyDE 格式：`【常見問題】` + 模擬疑問句 + `【知識內容】` + 純淨摘要 | `【常見問題】\n安裝電子鎖前需要提供哪些照片？...` |
 | `metadata.brand` | LLM 推斷的品牌 | `general` |
 | `metadata.model` | LLM 推斷的型號 | `general` |
 | `metadata.category` | LLM 推斷的分類 | `setup` |
 | `metadata.source_type` | 固定為 `line_chat` | `line_chat` |
-| `metadata.source` | 對應的 session_id | `1001_20240822_20240903_yen-cheng_session_6` |
+| `metadata.source` | 對應的 session_id | `1036_20240704_20240810_專專_session_1` |
+| `metadata.chunk_index` | 該知識點在原始文件中的序號 | `1` |
+| `metadata.raw_text` | 純淨知識摘要（供 Agent 回答使用） | `電子鎖或輔助鎖的安裝作業...` |
 
 ---
 
-## 階段三：Silver → Gold（切塊與向量化寫入 pgvector）
+## 階段三：Silver → Gold（向量化寫入 pgvector）
 
 ### 3.1 處理策略
 
-Silver JSON 已是結構化知識文件，但單篇文章可能過長，不利於向量檢索的精確度。此階段將文件切塊（Chunking）後，透過 Embedding 模型轉為向量並寫入 pgvector。
+Silver JSON 已是 LLM 語意前置切塊後的 Document Array，每個元素為一個獨立知識點。此階段直接將 JSON Array 轉為 LangChain Documents，經 Embedding 向量化後寫入 pgvector。
 
 **腳本**：`pipeline/silver_to_gold/seed_pgvector.py`
 
@@ -225,7 +232,7 @@ python pipeline/silver_to_gold/seed_pgvector.py --database line_chat --reset --v
 python pipeline/silver_to_gold/seed_pgvector.py --all --reset --verbose
 
 # 單檔驗證
-python pipeline/silver_to_gold/seed_pgvector.py --database line_chat --file "1001_20240822_20240903_yen-cheng_session_6.json" --verbose
+python pipeline/silver_to_gold/seed_pgvector.py --database line_chat --file "1036_20240704_20240810_專專_session_1.json" --verbose
 ```
 
 ### 3.2 處理流程圖
@@ -241,25 +248,19 @@ config:
     lineColor: '#5A6A7A'
 ---
 graph TD
-    A[Silver JSON 目錄<br/>每檔一份知識文件] -->|載入| B[轉為 LangChain Document]
-    B -->|RecursiveCharacterTextSplitter| C[切塊<br/>chunk_size=600, overlap=60]
-    C -->|Vertex AI text-embedding-004| D[向量化 (768 維)]
-    D --> E[寫入 pgvector<br/>collection: kb_line_chat]
+    A[Silver JSON Array<br/>每個元素一個知識點] -->|載入| B[轉為 LangChain Documents]
+    B -->|Vertex AI text-embedding-004| C[向量化 (768 維)]
+    C --> D[寫入 pgvector<br/>collection: kb_line_chat]
 
     style A fill:#E8F5E9,stroke:#66BB6A,stroke-width:2px
-    style E fill:#E1BEE7,stroke:#AB47BC,stroke-width:3px
+    style D fill:#E1BEE7,stroke:#AB47BC,stroke-width:3px
 ```
 
 ### 3.3 處理細節
 
 #### 文件載入
 - 讀取 `storage/silver/line_chat/` 下所有 `.json` 檔案
-- 每個 JSON 轉為 `langchain_core.documents.Document`，`metadata` 原封不動保留
-
-#### 切塊 (Chunking)
-- 使用 `RecursiveCharacterTextSplitter`
-- `chunk_size=600`，`chunk_overlap=60`（10% overlap）
-- 切塊後每個 chunk 繼承原文件的 metadata
+- 每個 JSON 為 Array，展開為多個 `langchain_core.documents.Document`，`metadata` 原封不動保留
 
 #### 向量化與寫入
 - Embedding 模型：Vertex AI `text-embedding-004`（768 維）
@@ -282,7 +283,7 @@ embedding_dimensions = 768
 ### 3.5 驗證
 
 ```bash
-# 查看 collection chunk 數量
+# 查看 collection 文件數量
 docker exec -it lock_AI psql -U lock -d lock_AI_data \
   -c "SELECT c.name, count(e.id) FROM langchain_pg_collection c LEFT JOIN langchain_pg_embedding e ON c.uuid = e.collection_id GROUP BY c.name;"
 
@@ -298,5 +299,5 @@ docker exec -it lock_AI psql -U lock -d lock_AI_data \
 | 階段 | 輸入 | 輸出 | 處理方式 | 腳本 |
 |------|------|------|---------|------|
 | Raw → Bronze | `storage/raw/line_chat/*.csv` | `storage/bronze/line_chat/*.csv` | 規則式清洗 + 時間聚合 | `pipeline/raw_to_bronze/process_line.py` |
-| Bronze → Silver | `storage/bronze/line_chat/*.csv` | `storage/silver/line_chat/*.json` | LLM 過濾 + 知識重寫 | `pipeline/bronze_to_silver/process_line.py` |
-| Silver → Gold | `storage/silver/line_chat/*.json` | pgvector `kb_line_chat` | 切塊 + Embedding 寫入 | `pipeline/silver_to_gold/seed_pgvector.py` |
+| Bronze → Silver | `storage/bronze/line_chat/*.csv` | `storage/silver/line_chat/*.json` | LLM 過濾 + Semantic Pre-chunking + HyDE | `pipeline/bronze_to_silver/process_line.py` |
+| Silver → Gold | `storage/silver/line_chat/*.json` | pgvector `kb_line_chat` | 直接轉 Documents + Embedding 寫入 | `pipeline/silver_to_gold/seed_pgvector.py` |

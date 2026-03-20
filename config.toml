@@ -3,6 +3,10 @@ llm_provider = "vertexai"
 llm_model = "gemini-2.5-flash"
 temperature = 0.3
 
+[pipelines.video_asr]
+model_type = "medium"
+fp16 = false
+
 [pipelines.line_chat]
 llm_provider = "vertexai"
 llm_model = "gemini-2.5-flash"

@@ -52,11 +52,11 @@ graph TD
     B1 -->|"主題聚合 / 結構化"| C1
     B2 -->|"語音糾錯 / 去冗言"| C2
     B3 -->|"段落重組 / 清洗"| C3
-    B4 -->|"時間戳轉連結 / 重寫"| C4
+    B4 -->|"語意切分 / HyDE"| C4
 
     C1 & C2 & C3 & C4 -->|"產出"| D
 
-    D -->|"Chunking 切塊"| E
+    D -->|"直接轉換為 Documents"| E
 
     E -->|"Upsert"| F1 & F2 & F3 & F4
     subgraph AI ["AI Services (服務工廠)"]

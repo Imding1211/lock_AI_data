@@ -61,6 +61,57 @@ vector_store.add_documents(docs)
 
 > **提示**：`get_embedding()` 是專案內的工廠函數（`embeddings/__init__.py`），根據 `embedding_provider` 自動建立對應的 Embedding 實例。目前支援 `"vertexai"` 與 `"ollama"`，如需新增供應商，在 `embeddings/` 目錄實作並註冊至 `REGISTRY` 即可。
 
+### 1.4 Silver 層 JSON 格式規範
+
+Silver 層產出為 **JSON Array**（文件陣列），每個元素代表一個獨立知識點，對應一個 LangChain `Document`。
+
+#### page_content 格式（HyDE）
+
+`page_content` 採用 **HyDE（Hypothetical Document Embeddings）** 格式，由兩部分組成：
+
+```
+【常見問題】
+{模擬使用者可能提出的疑問句，每行一句}
+
+【知識內容】
+{該知識點的純淨摘要}
+```
+
+此格式讓 Embedding 向量同時涵蓋「使用者問法」與「知識內容」，提升語意檢索的召回率。
+
+#### metadata 必填欄位
+
+| 欄位 | 型別 | 說明 |
+|------|------|------|
+| `brand` | str | 產品品牌，或 `"general"` |
+| `model` | str | 產品型號，或 `"general"` |
+| `category` | str | 分類：`setup` / `troubleshoot` / `knowledge` / `specification` |
+| `source_type` | str | 資料來源類型：`video` / `line_chat` / `youtube` |
+| `source` | str | 原始來源檔名或 ID |
+| `chunk_index` | int | 該知識點在原始文件中的序號（從 1 開始） |
+| `raw_text` | str | 純淨知識摘要（供 Agent 最終回答使用，不含 HyDE 疑問句） |
+
+#### JSON 範例
+
+```json
+[
+  {
+    "page_content": "【常見問題】\n我的電子鎖壞掉了，客服會先問我什麼？\n為什麼客服人員要先問電子鎖的品牌和型號？\n\n【知識內容】\n當客戶回報電子鎖出現問題時，客服人員應遵循標準作業流程，首先詢問客戶所使用的電子鎖品牌，接著詢問具體型號，以利後續問題診斷。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "客服問診 SOP 核心.txt",
+      "chunk_index": 1,
+      "raw_text": "當客戶回報電子鎖出現問題時，客服人員應遵循標準作業流程，首先詢問客戶所使用的電子鎖品牌，接著詢問具體型號，以利後續問題診斷。"
+    }
+  }
+]
+```
+
+> **Small-to-Big Retrieval**：`metadata["raw_text"]` 存放不含 HyDE 疑問句的純淨摘要。Agent 檢索時以 HyDE 格式的 `page_content` 進行向量比對，找到匹配文件後，使用 `raw_text` 作為最終回答的知識來源，避免將模擬疑問句混入回答。
+
 ---
 
 ## 2. config.toml 掛載協議

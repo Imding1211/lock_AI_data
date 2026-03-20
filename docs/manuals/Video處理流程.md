@@ -12,9 +12,20 @@ Raw .MOV → Bronze .txt → Silver JSON → Gold (pgvector)
 
 ### 1.1 處理策略
 
-原始訓練影片為 .MOV 格式，需透過語音辨識（ASR）將音訊內容轉為文字逐字稿。此階段目前為**手動處理**，尚無自動化腳本（`pipeline/raw_to_bronze/` 中未包含 video 處理器）。
+原始訓練影片為 .MOV / .mp4 格式，需透過語音辨識（ASR）將音訊內容轉為文字逐字稿。此階段使用 **OpenAI Whisper** 本地模型進行語音辨識轉錄。
 
-> **CLI**：目前無自動化腳本，語音辨識透過外部工具手動執行後，將產出的 .txt 檔案放入 `storage/bronze/video/`。
+**腳本**：`pipeline/raw_to_bronze/process_video.py`
+
+```bash
+# 全量處理
+python pipeline/raw_to_bronze/process_video.py --verbose
+
+# 單檔處理
+python pipeline/raw_to_bronze/process_video.py --file "Chainlock 設定教學.MOV" --verbose
+
+# 強制覆寫已存在的 Bronze 輸出
+python pipeline/raw_to_bronze/process_video.py --force --verbose
+```
 
 ### 1.2 處理流程圖
 
@@ -29,7 +40,7 @@ config:
     lineColor: '#5A6A7A'
 ---
 graph TD
-    A[Raw .MOV 影片<br/>訓練/教學/故障排除] -->|語音辨識 ASR| B[產出含時間戳的逐字稿]
+    A[Raw .MOV / .mp4 影片<br/>訓練/教學/故障排除] -->|OpenAI Whisper ASR| B[產出含時間戳的逐字稿]
     B --> C[存為 Bronze .txt<br/>檔名與原始影片相同]
 
     style A fill:#E8F4FD,stroke:#7AB8E0,stroke-width:2px
@@ -76,7 +87,7 @@ Bronze .txt 為語音辨識原始輸出，帶有時間戳與口語雜訊：
 
 ### 2.1 處理策略
 
-Bronze .txt 是未經修正的語音辨識逐字稿，充滿 ASR 錯字、口頭禪和拍攝指令。此階段透過 LLM 執行四項任務：**語音辨識糾錯**、**去噪**、**結構化重寫**、**Metadata 推斷**，將雜亂的逐字稿轉為可用於 RAG 的結構化知識文件。
+Bronze .txt 是未經修正的語音辨識逐字稿，充滿 ASR 錯字、口頭禪和拍攝指令。此階段透過 LLM 執行 **Semantic Pre-chunking**（語意前置切塊），將整份逐字稿依語意邊界拆分為多個獨立知識點，每個知識點包含 **HyDE 格式**（`【常見問題】` + `【知識內容】`）的 `page_content` 與 `raw_text` 純淨摘要。具體任務包含：**語音辨識糾錯**、**去噪**、**語意切分與 HyDE 格式組裝**、**Metadata 推斷**。
 
 **腳本**：`pipeline/bronze_to_silver/process_video.py`
 
@@ -105,12 +116,12 @@ config:
 ---
 graph TD
     A[Bronze .txt<br/>ASR 逐字稿] -->|逐檔讀取| B[取得檔名 + 逐字稿內容]
-    B -->|送入 LLM| C[1. 語音辨識糾錯]
-    C --> D[2. 去噪<br/>移除口頭禪/重複句/拍攝指令/時間戳]
-    D --> E[3. 結構化重寫<br/>依內容性質選擇格式]
+    B -->|送入 LLM| C[1. 語音辨識糾錯 + 去噪]
+    C --> D[2. 語意切分<br/>Semantic Pre-chunking]
+    D --> E[3. 模擬疑問句<br/>HyDE 格式組裝]
     E --> F[4. Metadata 推斷<br/>brand / model / category]
-    F --> G[組合為 LangChain Document JSON]
-    G --> H[輸出 Silver JSON<br/>每部影片一個檔案]
+    F --> G[組合為 JSON Array<br/>每個元素一個知識點]
+    G --> H[輸出 Silver JSON Array<br/>每部影片一個檔案]
 
     style A fill:#FFF3E0,stroke:#FFB74D,stroke-width:2px
     style H fill:#E8F5E9,stroke:#66BB6A,stroke-width:3px
@@ -180,37 +191,43 @@ LLM provider 和 model 由 `config.toml` 的 `[pipelines.video]` 區塊控制。
 
 ### 2.5 輸出規格
 
-產出的 Silver JSON 位於 `storage/silver/video/`，每部影片對應一個 JSON 檔案，檔名為 `{影片名稱}.json`。
+產出的 Silver JSON 位於 `storage/silver/video/`，每部影片對應一個 JSON 檔案，檔名為 `{影片名稱}.json`。格式為 **JSON Array**，每個元素為一個獨立知識點。
 
 ```json
-{
-  "page_content": "一、電子鎖設定模式進入與用戶管理\n\n適用機型：Chainlock AI99系列、A90系列...",
-  "metadata": {
-    "brand": "Chainlock",
-    "model": "AI99, A90, AI88",
-    "category": "setup",
-    "source_type": "video",
-    "source": "Chainlock 設定教學.txt"
+[
+  {
+    "page_content": "【常見問題】\n我的電子鎖壞掉了，客服會先問我什麼？\n為什麼客服人員要先問電子鎖的品牌和型號？\n\n【知識內容】\n當客戶回報電子鎖出現問題時，客服人員應遵循標準作業流程，首先詢問客戶所使用的電子鎖品牌，接著詢問具體型號，以利後續問題診斷。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "video",
+      "source": "客服問診 SOP 核心.txt",
+      "chunk_index": 1,
+      "raw_text": "當客戶回報電子鎖出現問題時，客服人員應遵循標準作業流程，首先詢問客戶所使用的電子鎖品牌，接著詢問具體型號，以利後續問題診斷。"
+    }
   }
-}
+]
 ```
 
 | 欄位 | 說明 | 範例 |
 |------|------|------|
-| `page_content` | LLM 糾錯、去噪、結構化重寫後的知識文章 | `一、電子鎖設定模式進入與用戶管理...` |
-| `metadata.brand` | LLM 推斷的品牌 | `Chainlock` |
-| `metadata.model` | LLM 推斷的型號 | `AI99, A90, AI88` |
-| `metadata.category` | LLM 推斷的分類 | `setup` |
+| `page_content` | HyDE 格式：`【常見問題】` + 模擬疑問句 + `【知識內容】` + 純淨摘要 | `【常見問題】\n我的電子鎖壞掉了...` |
+| `metadata.brand` | LLM 推斷的品牌 | `general` |
+| `metadata.model` | LLM 推斷的型號 | `general` |
+| `metadata.category` | LLM 推斷的分類 | `knowledge` |
 | `metadata.source_type` | 固定為 `video`（腳本強制覆寫） | `video` |
-| `metadata.source` | 對應的 Bronze .txt 檔名（腳本強制覆寫） | `Chainlock 設定教學.txt` |
+| `metadata.source` | 對應的 Bronze .txt 檔名（腳本強制覆寫） | `客服問診 SOP 核心.txt` |
+| `metadata.chunk_index` | 該知識點在原始文件中的序號 | `1` |
+| `metadata.raw_text` | 純淨知識摘要（供 Agent 回答使用） | `當客戶回報電子鎖出現問題時...` |
 
 ---
 
-## 階段三：Silver → Gold（切塊與向量化寫入 pgvector）
+## 階段三：Silver → Gold（向量化寫入 pgvector）
 
 ### 3.1 處理策略
 
-Silver JSON 已是結構化知識文件，但單篇文章可能過長，不利於向量檢索的精確度。此階段將文件切塊（Chunking）後，透過 Embedding 模型轉為向量並寫入 pgvector。
+Silver JSON 已是 LLM 語意前置切塊後的 Document Array，每個元素為一個獨立知識點。此階段直接將 JSON Array 轉為 LangChain Documents，經 Embedding 向量化後寫入 pgvector。
 
 **腳本**：`pipeline/silver_to_gold/seed_pgvector.py`
 
@@ -238,25 +255,19 @@ config:
     lineColor: '#5A6A7A'
 ---
 graph TD
-    A[Silver JSON 目錄<br/>每檔一份知識文件] -->|載入| B[轉為 LangChain Document]
-    B -->|RecursiveCharacterTextSplitter| C[切塊<br/>chunk_size=600, overlap=60]
-    C -->|Vertex AI text-embedding-004| D[向量化 (768 維)]
-    D --> E[寫入 pgvector<br/>collection: kb_video]
+    A[Silver JSON Array<br/>每個元素一個知識點] -->|載入| B[轉為 LangChain Documents]
+    B -->|Vertex AI text-embedding-004| C[向量化 (768 維)]
+    C --> D[寫入 pgvector<br/>collection: kb_video]
 
     style A fill:#E8F5E9,stroke:#66BB6A,stroke-width:2px
-    style E fill:#E1BEE7,stroke:#AB47BC,stroke-width:3px
+    style D fill:#E1BEE7,stroke:#AB47BC,stroke-width:3px
 ```
 
 ### 3.3 處理細節
 
 #### 文件載入
 - 讀取 `storage/silver/video/` 下所有 `.json` 檔案
-- 每個 JSON 轉為 `langchain_core.documents.Document`，`metadata` 原封不動保留
-
-#### 切塊 (Chunking)
-- 使用 `RecursiveCharacterTextSplitter`
-- `chunk_size=600`，`chunk_overlap=60`（10% overlap）
-- 切塊後每個 chunk 繼承原文件的 metadata
+- 每個 JSON 為 Array，展開為多個 `langchain_core.documents.Document`，`metadata` 原封不動保留
 
 #### 向量化與寫入
 - Embedding 模型：Vertex AI `text-embedding-004`（768 維）
@@ -279,7 +290,7 @@ embedding_dimensions = 768
 ### 3.5 驗證
 
 ```bash
-# 查看 collection chunk 數量
+# 查看 collection 文件數量
 docker exec -it lock_AI psql -U lock -d lock_AI_data \
   -c "SELECT c.name, count(e.id) FROM langchain_pg_collection c LEFT JOIN langchain_pg_embedding e ON c.uuid = e.collection_id GROUP BY c.name;"
 
@@ -294,6 +305,6 @@ docker exec -it lock_AI psql -U lock -d lock_AI_data \
 
 | 階段 | 輸入 | 輸出 | 處理方式 | 腳本 |
 |------|------|------|---------|------|
-| Raw → Bronze | `storage/raw/video/*.MOV` | `storage/bronze/video/*.txt` | 語音辨識（手動） | 尚無自動化腳本 |
-| Bronze → Silver | `storage/bronze/video/*.txt` | `storage/silver/video/*.json` | LLM 糾錯 + 去噪 + 結構化重寫 | `pipeline/bronze_to_silver/process_video.py` |
-| Silver → Gold | `storage/silver/video/*.json` | pgvector `kb_video` | 切塊 + Embedding 寫入 | `pipeline/silver_to_gold/seed_pgvector.py` |
+| Raw → Bronze | `storage/raw/video/*.MOV` | `storage/bronze/video/*.txt` | Whisper ASR 語音辨識 | `pipeline/raw_to_bronze/process_video.py` |
+| Bronze → Silver | `storage/bronze/video/*.txt` | `storage/silver/video/*.json` | LLM Semantic Pre-chunking + HyDE | `pipeline/bronze_to_silver/process_video.py` |
+| Silver → Gold | `storage/silver/video/*.json` | pgvector `kb_video` | 直接轉 Documents + Embedding 寫入 | `pipeline/silver_to_gold/seed_pgvector.py` |
