@@ -15,7 +15,7 @@ graph TD
         direction LR
         A1["Line Chat<br/>.csv"]
         A2["Video<br/>.mp4"]
-        A3["Website<br/>.html"]
+        A3["Website<br/>.txt"]
         A4["YouTube<br/>.mp4"]
     end
 
@@ -23,7 +23,7 @@ graph TD
         direction LR
         B1["Line Chat<br/>.csv"]
         B2["Video<br/>.txt"]
-        B3["Website<br/>.txt / .md"]
+        B3["Website<br/>.md"]
         B4["YouTube<br/>.json"]
     end
 
@@ -51,7 +51,7 @@ graph TD
 
     B1 -->|"主題聚合 / 結構化"| C1
     B2 -->|"語音糾錯 / 去冗言"| C2
-    B3 -->|"段落重組 / 清洗"| C3
+    B3 -->|"語意切分 / HyDE"| C3
     B4 -->|"語意切分 / HyDE"| C4
 
     C1 & C2 & C3 & C4 -->|"產出"| D

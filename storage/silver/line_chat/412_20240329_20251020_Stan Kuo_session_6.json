@@ -1,0 +1,38 @@
+[
+  {
+    "page_content": "【常見問題】\n美樂電子鎖有機械鑰匙嗎？\n外門電子鎖沒有機械鑰匙是正常的嗎？\n\n【知識內容】\n美樂（Milre）品牌的外門電子鎖不配備機械鑰匙，其設計不包含傳統的實體備用鑰匙孔。",
+    "metadata": {
+      "brand": "Milre",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "412_20240329_20251020_Stan Kuo_session_6",
+      "chunk_index": 1,
+      "raw_text": "美樂（Milre）品牌的外門電子鎖不配備機械鑰匙，其設計不包含傳統的實體備用鑰匙孔。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n美樂電子鎖沒電了怎麼辦？\n9V電池要怎麼幫美樂電子鎖緊急供電？\n電子鎖緊急供電需要什麼電池？\n\n【知識內容】\n當美樂（Milre）電子鎖因電池耗盡而無法運作時，使用者可透過在外部機的兩個銀色凸點上接觸一顆9V鹼性電池，進行緊急供電以解鎖。",
+    "metadata": {
+      "brand": "Milre",
+      "model": "general",
+      "category": "troubleshoot",
+      "source_type": "line_chat",
+      "source": "412_20240329_20251020_Stan Kuo_session_6",
+      "chunk_index": 2,
+      "raw_text": "當美樂（Milre）電子鎖因電池耗盡而無法運作時，使用者可透過在外部機的兩個銀色凸點上接觸一顆9V鹼性電池，進行緊急供電以解鎖。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n美樂電子鎖主機板壞掉怎麼辦？\n電子鎖在保固期內故障會怎麼處理？\n電子鎖故障維修是否會破壞鎖體？\n\n【知識內容】\n若美樂（Milre）電子鎖的主機板在保固期內發生故障，經由美樂原廠授權的服務單位將會進行處理，此過程可能涉及對電子鎖進行破壞性拆卸或更換。",
+    "metadata": {
+      "brand": "Milre",
+      "model": "general",
+      "category": "troubleshoot",
+      "source_type": "line_chat",
+      "source": "412_20240329_20251020_Stan Kuo_session_6",
+      "chunk_index": 3,
+      "raw_text": "若美樂（Milre）電子鎖的主機板在保固期內發生故障，經由美樂原廠授權的服務單位將會進行處理，此過程可能涉及對電子鎖進行破壞性拆卸或更換。"
+    }
+  }
+]

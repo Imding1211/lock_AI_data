@@ -1,0 +1,38 @@
+[
+  {
+    "page_content": "【常見問題】\n電子鎖要怎麼設定？\n設定電子鎖一定要看說明書嗎？\n電子鎖設定時有語音提示嗎？\n\n【知識內容】\n電子鎖的基本設定應參考產品隨附的說明書，並依循按鍵語音導覽提示進行操作。建議使用者在進行設定前，務必詳細閱讀說明書以確保設定流程正確無誤。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "setup",
+      "source_type": "line_chat",
+      "source": "1174_20240304_20240503_莉婷Liv_session_2",
+      "chunk_index": 1,
+      "raw_text": "電子鎖的基本設定應參考產品隨附的說明書，並依循按鍵語音導覽提示進行操作。建議使用者在進行設定前，務必詳細閱讀說明書以確保設定流程正確無誤。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n設定電子鎖的時候門要開著嗎？\n電子鎖設定完後門可以馬上關起來嗎？\n為什麼設定電子鎖時要保持門開啟？\n\n【知識內容】\n在進行電子鎖設定時，以及設定完成後，建議使用者應保持門扇開啟狀態，以確保設定過程的安全與順利，並避免因誤操作導致門鎖關閉而無法進入。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "setup",
+      "source_type": "line_chat",
+      "source": "1174_20240304_20240503_莉婷Liv_session_2",
+      "chunk_index": 2,
+      "raw_text": "在進行電子鎖設定時，以及設定完成後，建議使用者應保持門扇開啟狀態，以確保設定過程的安全與順利，並避免因誤操作導致門鎖關閉而無法進入。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nMilre 電子鎖設定會很複雜嗎？\nMilre 電子鎖怎麼快速上手？\nMilre 電子鎖的設定是不是比較簡單？\n\n【知識內容】\nMilre（美樂）電子鎖的設定流程設計相對簡便，使用者可透過參閱產品說明書，快速掌握操作方法並完成設定。",
+    "metadata": {
+      "brand": "Milre",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "1174_20240304_20240503_莉婷Liv_session_2",
+      "chunk_index": 3,
+      "raw_text": "Milre（美樂）電子鎖的設定流程設計相對簡便，使用者可透過參閱產品說明書，快速掌握操作方法並完成設定。"
+    }
+  }
+]

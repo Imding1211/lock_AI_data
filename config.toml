@@ -19,6 +19,7 @@ auto_reply_patterns = [
 [pipelines.youtube_fetch]
 playlists = [
     "https://www.youtube.com/playlist?list=PLAuQE6MOYXNcIGS2l8UPykjMbLEPXCV0f",
+    "https://www.youtube.com/playlist?list=PLM5vIu1JtWIL2vQjUMOl9WskjQxqVkvWU"
 ]
 
 [pipelines.youtube_vision]
@@ -27,6 +28,11 @@ llm_model = "gemini-2.5-flash"
 temperature = 0.1
 
 [pipelines.youtube_silver]
+llm_provider = "vertexai"
+llm_model = "gemini-2.5-flash"
+temperature = 0.3
+
+[pipelines.website]
 llm_provider = "vertexai"
 llm_model = "gemini-2.5-flash"
 temperature = 0.3

@@ -1,0 +1,26 @@
+[
+  {
+    "page_content": "【常見問題】\n哪些電子鎖型號支援指紋辨識和遠端控制？\n電子鎖的遠端操控功能需要網路嗎？\n如何選擇具備指紋和遠端功能的電子鎖？\nmetadata\n\n【知識內容】\n客戶可選擇具備指紋辨識功能及遠端操控功能的電子鎖產品。此類遠端操控功能通常需依賴WiFi網路連線以實現。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "477_20250623_20250906_吳秉諺-倍特力電動自行車零組件_session_1",
+      "chunk_index": 1,
+      "raw_text": "客戶可選擇具備指紋辨識功能及遠端操控功能的電子鎖產品。此類遠端操控功能通常需依賴WiFi網路連線以實現。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n安裝電子鎖前需要先準備好WiFi嗎？\n為什麼電子鎖安裝需要等待WiFi設定完成？\n如果沒有WiFi，電子鎖的遠端功能還能使用嗎？\n\n【知識內容】\n電子鎖的安裝作業，特別是針對具備遠端連線功能的產品，需待現場WiFi網路環境建置完成後方可進行，以確保電子鎖的遠端功能能夠正常啟用與運作。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "setup",
+      "source_type": "line_chat",
+      "source": "477_20250623_20250906_吳秉諺-倍特力電動自行車零組件_session_1",
+      "chunk_index": 2,
+      "raw_text": "電子鎖的安裝作業，特別是針對具備遠端連線功能的產品，需待現場WiFi網路環境建置完成後方可進行，以確保電子鎖的遠端功能能夠正常啟用與運作。"
+    }
+  }
+]

@@ -7,3 +7,6 @@ langchain-google-genai
 psycopg[binary]
 pandas
 yt-dlp
+playwright
+beautifulsoup4
+markdownify

@@ -1,0 +1,38 @@
+[
+  {
+    "page_content": "【常見問題】\n電子鎖壞掉想換零件，需要提供什麼資訊？\n換電子鎖的鎖心要量哪些地方？\nYale 電子鎖可以只換部分零件嗎？\n\n【知識內容】\n當考慮更換電子鎖的特定零件（例如鎖心或鎖匣）時，使用者需提供現有電子鎖及門的詳細照片，並測量門的厚度。這些資訊有助於技術人員初步評估零件的相容性，並判斷是進行單一零件更換還是需要整組電子鎖更換。對於 Yale 電子鎖，部分零件更換通常發生於維修情境，而整組更換則較為常見。",
+    "metadata": {
+      "brand": "Yale",
+      "model": "general",
+      "category": "troubleshoot",
+      "source_type": "line_chat",
+      "source": "1249_20240308_20240312_江存安_session_1",
+      "chunk_index": 1,
+      "raw_text": "當考慮更換電子鎖的特定零件（例如鎖心或鎖匣）時，使用者需提供現有電子鎖及門的詳細照片，並測量門的厚度。這些資訊有助於技術人員初步評估零件的相容性，並判斷是進行單一零件更換還是需要整組電子鎖更換。對於 Yale 電子鎖，部分零件更換通常發生於維修情境，而整組更換則較為常見。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nYale YDM3109A 電子鎖怎麼改密碼？\n設定 Yale 電子鎖密碼要注意什麼？\nYale YDM3109A 的密碼設定說明書在哪裡？\n\n【知識內容】\nYale YDM3109A 電子鎖的電子密碼重設步驟可參考官方使用者手冊（例如：https://yaletaiwanstore.com.tw/wp-content/uploads/2021/08/Yale-YDM3109A-User-Manual-TC_2023V.pdf）。在進行密碼設定與測試時，務必保持門扇開啟狀態，以避免操作失誤導致門鎖上。",
+    "metadata": {
+      "brand": "Yale",
+      "model": "YDM3109A",
+      "category": "setup",
+      "source_type": "line_chat",
+      "source": "1249_20240308_20240312_江存安_session_1",
+      "chunk_index": 2,
+      "raw_text": "Yale YDM3109A 電子鎖的電子密碼重設步驟可參考官方使用者手冊（例如：https://yaletaiwanstore.com.tw/wp-content/uploads/2021/08/Yale-YDM3109A-User-Manual-TC_2023V.pdf）。在進行密碼設定與測試時，務必保持門扇開啟狀態，以避免操作失誤導致門鎖上。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nYale 電子鎖只換鎖心要多少錢？\n換一個 Yale 電子鎖的鎖心大概多少錢？\nYale 電子鎖整組換新的價格是多少？\n\n【知識內容】\n更換 Yale 電子鎖的鎖心（不含整組電子鎖）的連工帶料報價，需根據具體型號和零件供應情況進行個別詢價。若為全新 Yale 電子鎖整組更換，市場價格通常約在新台幣兩萬元以上。",
+    "metadata": {
+      "brand": "Yale",
+      "model": "general",
+      "category": "specification",
+      "source_type": "line_chat",
+      "source": "1249_20240308_20240312_江存安_session_1",
+      "chunk_index": 3,
+      "raw_text": "更換 Yale 電子鎖的鎖心（不含整組電子鎖）的連工帶料報價，需根據具體型號和零件供應情況進行個別詢價。若為全新 Yale 電子鎖整組更換，市場價格通常約在新台幣兩萬元以上。"
+    }
+  }
+]

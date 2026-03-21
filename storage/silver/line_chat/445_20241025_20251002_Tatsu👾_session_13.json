@@ -1,0 +1,38 @@
+[
+  {
+    "page_content": "【常見問題】\n有哪些品牌的電子鎖可以選擇？\n電子鎖有哪些常見的解鎖功能？\n我想買電子鎖，有哪些功能可以挑選？\n\n【知識內容】\n市面上常見的電子鎖產品提供多種品牌選擇，例如 Milre、AILOCK、dormakaba、Philips 和 Kaadas。這些電子鎖產品具備多樣化的解鎖功能，包括指紋辨識、感應卡、實體鑰匙、密碼輸入、藍牙連接、遠端控制以及透過專屬APP進行操作等。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "445_20241025_20251002_Tatsu👾_session_13",
+      "chunk_index": 1,
+      "raw_text": "市面上常見的電子鎖產品提供多種品牌選擇，例如 Milre、AILOCK、dormakaba、Philips 和 Kaadas。這些電子鎖產品具備多樣化的解鎖功能，包括指紋辨識、感應卡、實體鑰匙、密碼輸入、藍牙連接、遠端控制以及透過專屬APP進行操作等。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n電子鎖的遠端功能有哪些？\n遠端電子鎖可以做到什麼？\n如何用APP遠端控制電子鎖？\n\n【知識內容】\n電子鎖的遠端控制功能主要分為兩種：第一種是透過下載專屬APP應用程式，實現異地即時開關門的操作；第二種是透過APP設定並遠端發送臨時金鑰，允許特定對象在指定時間內使用密碼進出。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "445_20241025_20251002_Tatsu👾_session_13",
+      "chunk_index": 2,
+      "raw_text": "電子鎖的遠端控制功能主要分為兩種：第一種是透過下載專屬APP應用程式，實現異地即時開關門的操作；第二種是透過APP設定並遠端發送臨時金鑰，允許特定對象在指定時間內使用密碼進出。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\n電子鎖為什麼還會有實體鑰匙？\n電子鎖沒電或壞掉怎麼辦？\n傳統鑰匙在電子鎖中扮演什麼角色？\n\n【知識內容】\n多數電子鎖型號仍保留傳統實體鑰匙功能，其主要目的是作為電子鎖發生非預期性故障（例如電力耗盡或系統異常）時的備用解鎖方式，以確保使用者仍能順利進入。",
+    "metadata": {
+      "brand": "general",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "445_20241025_20251002_Tatsu👾_session_13",
+      "chunk_index": 3,
+      "raw_text": "多數電子鎖型號仍保留傳統實體鑰匙功能，其主要目的是作為電子鎖發生非預期性故障（例如電力耗盡或系統異常）時的備用解鎖方式，以確保使用者仍能順利進入。"
+    }
+  }
+]
