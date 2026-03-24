@@ -1,0 +1,26 @@
+[
+  {
+    "page_content": "【常見問題】\nChatlock 電子鎖是哪個國家的品牌？\nChatlock 電子鎖的產品是在哪裡製造的？\nChatlock 在台灣的售後服務是由誰負責？\n\n【知識內容】\nChatlock 品牌為日本原廠品牌，並非代理或貼牌公司。自 2018 年起，Chatlock 在日本擁有自己的工廠、研發團隊、硬體與軟體系統，所有產品皆由日本設計與製造。其台灣分公司為日本總公司設立的直屬單位，確保品牌經營穩定且售後服務由原廠直接負責。",
+    "metadata": {
+      "brand": "Chatlock",
+      "model": "general",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "348_20251105_20251118_MB_session_2",
+      "chunk_index": 1,
+      "raw_text": "Chatlock 品牌為日本原廠品牌，並非代理或貼牌公司。自 2018 年起，Chatlock 在日本擁有自己的工廠、研發團隊、硬體與軟體系統，所有產品皆由日本設計與製造。其台灣分公司為日本總公司設立的直屬單位，確保品牌經營穩定且售後服務由原廠直接負責。"
+    }
+  },
+  {
+    "page_content": "【常見問題】\nHitachi HIT-FH10-T 電子鎖台灣有販售嗎？\n為什麼 Hitachi HIT-FH10-T 電子鎖沒有引進台灣？\nHitachi 電子鎖的引進狀況如何？\n\n【知識內容】\nHitachi HIT-FH10-T 電子鎖目前尚未有引進計畫，主要原因為其產地及伺服器相關資訊尚未獲得確切回覆。",
+    "metadata": {
+      "brand": "Hitachi",
+      "model": "HIT-FH10-T",
+      "category": "knowledge",
+      "source_type": "line_chat",
+      "source": "348_20251105_20251118_MB_session_2",
+      "chunk_index": 2,
+      "raw_text": "Hitachi HIT-FH10-T 電子鎖目前尚未有引進計畫，主要原因為其產地及伺服器相關資訊尚未獲得確切回覆。"
+    }
+  }
+]

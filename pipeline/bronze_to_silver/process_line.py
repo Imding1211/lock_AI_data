@@ -222,7 +222,8 @@ def main():
                 result = process_one_session(llm_func, session_id, transcript)
 
                 if result is None:
-                    log.info("[跳過 - 不相關]：%s", session_id)
+                    out_path.write_text("[]", encoding="utf-8")
+                    log.info("[不相關 → 寫入空 JSON]：%s", session_id)
                     irrelevant += 1
                     continue
 
