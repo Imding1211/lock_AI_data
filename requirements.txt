@@ -10,3 +10,4 @@ yt-dlp
 playwright
 beautifulsoup4
 markdownify
+google-api-python-client

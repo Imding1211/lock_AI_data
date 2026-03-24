@@ -17,6 +17,7 @@ graph TD
         A2["Video<br/>.mp4"]
         A3["Website<br/>.txt"]
         A4["YouTube<br/>.mp4"]
+        A5["GDrive<br/>links.txt"]
     end
 
     subgraph BRONZE ["Bronze Layer (粗抽取層)"]
@@ -25,6 +26,7 @@ graph TD
         B2["Video<br/>.txt"]
         B3["Website<br/>.md"]
         B4["YouTube<br/>.json"]
+        B5["GDrive<br/>.json"]
     end
 
     subgraph SILVER ["Silver Layer (結構化中台)"]
@@ -33,6 +35,7 @@ graph TD
         C2("process_video.py")
         C3("process_website.py")
         C4("process_youtube.py")
+        C5("process_gdrive.py")
     end
 
     D["標準化 Document JSON<br/>page_content + metadata"]
@@ -43,29 +46,32 @@ graph TD
         F2[("kb_video")]
         F3[("kb_website")]
         F4[("kb_youtube")]
+        F5[("kb_gdrive")]
     end
     A1 -->|"去識別化 / 過濾"| B1
     A2 -->|"ASR 語音轉文字"| B2
     A3 -->|"網頁去噪 / 提取"| B3
     A4 -->|"Vision 逐幀解析"| B4
+    A5 -->|"Drive API 索引"| B5
 
     B1 -->|"主題聚合 / 結構化"| C1
     B2 -->|"語音糾錯 / 去冗言"| C2
     B3 -->|"語意切分 / HyDE"| C3
     B4 -->|"語意切分 / HyDE"| C4
+    B5 -->|"語意切分 / HyDE"| C5
 
-    C1 & C2 & C3 & C4 -->|"產出"| D
+    C1 & C2 & C3 & C4 & C5 -->|"產出"| D
 
     D -->|"直接轉換為 Documents"| E
 
-    E -->|"Upsert"| F1 & F2 & F3 & F4
+    E -->|"Upsert"| F1 & F2 & F3 & F4 & F5
     subgraph AI ["AI Services (服務工廠)"]
         direction TB
         LLM_F["LLM Factory<br/><i>Gemini 2.5 Flash</i>"]
         EMB_F["Embedding Factory<br/><i>text-embedding-004</i>"]
     end
 
-    LLM_F -.-> C1 & C2 & C3 & C4
+    LLM_F -.-> C1 & C2 & C3 & C4 & C5
     EMB_F -.-> E
     style RAW fill:#E8F4FD,stroke:#7AB8E0,stroke-width:2px,color:#2C5F7C
     style BRONZE fill:#FFF3E0,stroke:#FFB74D,stroke-width:2px,color:#7A5A2C
@@ -79,8 +85,10 @@ graph TD
     style C2 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
     style C3 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
     style C4 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
+    style C5 fill:#A5D6A7,stroke:#388E3C,stroke-width:1px
     style E fill:#FFE082,stroke:#F9A825,stroke-width:2px
     style F1 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
     style F2 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
     style F3 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
     style F4 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700
+    style F5 fill:#FFD54F,stroke:#F57F17,stroke-width:3px,color:#4A3700

@@ -37,6 +37,15 @@ llm_provider = "vertexai"
 llm_model = "gemini-2.5-flash"
 temperature = 0.3
 
+[pipelines.gdrive]
+service_account_file = "credentials.json"
+scopes = ["https://www.googleapis.com/auth/drive.readonly"]
+
+[pipelines.gdrive_silver]
+llm_provider = "vertexai"
+llm_model = "gemini-2.5-flash"
+temperature = 0.3
+
 [databases.video]
 type = "pgvector"
 collection_name = "kb_video"
@@ -74,6 +83,17 @@ chunk_overlap = 60
 type = "pgvector"
 collection_name = "kb_youtube"
 source_dir = "youtube"
+connection_uri_env = "PG_VECTOR_URI"
+embedding_provider = "vertexai"
+embedding_model = "text-embedding-004"
+embedding_dimensions = 768
+chunk_size = 600
+chunk_overlap = 60
+
+[databases.gdrive]
+type = "pgvector"
+collection_name = "kb_gdrive"
+source_dir = "gdrive"
 connection_uri_env = "PG_VECTOR_URI"
 embedding_provider = "vertexai"
 embedding_model = "text-embedding-004"

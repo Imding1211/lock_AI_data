@@ -86,7 +86,7 @@ Silver 層產出為 **JSON Array**（文件陣列），每個元素代表一個�
 | `brand` | str | 產品品牌，或 `"general"` |
 | `model` | str | 產品型號，或 `"general"` |
 | `category` | str | 分類：`setup` / `troubleshoot` / `knowledge` / `specification` |
-| `source_type` | str | 資料來源類型：`video` / `line_chat` / `youtube` |
+| `source_type` | str | 資料來源類型：`video` / `line_chat` / `youtube` / `gdrive` |
 | `source` | str | 原始來源檔名或 ID |
 | `chunk_index` | int | 該知識點在原始文件中的序號（從 1 開始） |
 | `raw_text` | str | 純淨知識摘要（供 Agent 最終回答使用，不含 HyDE 疑問句） |
