@@ -26,5 +26,8 @@ storage/raw/line_chat/*.csv
 # ── Large binary / media files ────────────────────────────────────────
 storage/bronze/line_chat/*.csv
 
+# ── Silver layer generated JSON ──────────────────────────────────────
+storage/silver/line_chat/*.json
+
 # ── Keep .keep files inside ignored directories ──────────────────────
 !**/.keep
