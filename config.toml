@@ -18,8 +18,12 @@ auto_reply_patterns = [
 
 [pipelines.youtube_fetch]
 playlists = [
-    "https://www.youtube.com/playlist?list=PLAuQE6MOYXNcIGS2l8UPykjMbLEPXCV0f",
-    "https://www.youtube.com/playlist?list=PLM5vIu1JtWIL2vQjUMOl9WskjQxqVkvWU"
+    "https://www.youtube.com/playlist?list=PLix8orsft3k0NiM5TIzCa7db9CF_YZTOA",
+    "https://www.youtube.com/playlist?list=PLix8orsft3k2zBqjIakEOrNuLJp5JfwKy",
+    "https://www.youtube.com/playlist?list=PLM5vIu1JtWIL2vQjUMOl9WskjQxqVkvWU",
+    "https://www.youtube.com/playlist?list=PLM5vIu1JtWIIk_yXslcOrOTGt8E_e0hU4",
+    "https://www.youtube.com/playlist?list=PLQQFsbE4rjk8A8WHQ8tmsZlmUI42gHEPz",
+    "https://www.youtube.com/playlist?list=PLQQFsbE4rjk-tEp5opU7E1QLpGegzzHGK"
 ]
 
 [pipelines.youtube_vision]
