@@ -32,3 +32,5 @@ storage/silver/line_chat/*.json
 
 # ── Keep .keep files inside ignored directories ──────────────────────
 !**/.keep
+
+.claude
