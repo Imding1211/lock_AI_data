@@ -33,7 +33,10 @@ gcloud components install cloud-sql-proxy
 
 ```bash
 gcloud auth login
+gcloud auth application-default login
 ```
+
+> **說明**：`gcloud auth login` 用於 gcloud CLI 本身的認證；`gcloud auth application-default login` 則設定 Application Default Credentials (ADC)，供 Vertex AI SDK、langchain-google-genai 等程式庫使用。
 
 ### 2.3 啟動 Proxy
 
